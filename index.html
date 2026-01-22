@@ -505,6 +505,178 @@
             margin-bottom: 10px;
         }
 
+        .notification-item {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .notification-item:hover {
+            transform: translateX(5px);
+            border-color: #667eea;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .notification-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #2a2a2a;
+            color: #999;
+        }
+
+        .notification-badge.new {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .notification-badge.hot {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .notification-date {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .notification-item h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .notification-item p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab {
+            flex: 1;
+            min-width: 180px;
+            padding: 14px 20px;
+            background: #2a2a2a;
+            border: 2px solid #333;
+            color: #999;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .admin-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .admin-tab:hover {
+            border-color: #667eea;
+        }
+
+        .user-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .user-card .user-name {
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .user-card .user-balance {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .user-card .user-date {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .user-card .user-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-small:hover {
+            background: #5568d3;
+        }
+
+        .btn-small.danger {
+            background: #ef4444;
+        }
+
+        .btn-small.danger:hover {
+            background: #dc2626;
+        }
+
+        .service-edit-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .service-edit-card h4 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .service-edit-card input {
+            width: 100%;
+            padding: 10px;
+            background: #2a2a2a;
+            border: 2px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 768px) {
             .service-grid {
                 grid-template-columns: 1fr;
@@ -533,6 +705,15 @@
             .user-balance, .deposit-btn, .logout-btn {
                 padding: 8px 12px;
                 font-size: 12px;
+            }
+
+            .user-card {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .user-card .user-actions {
+                justify-content: flex-start;
             }
         }
     </style>
@@ -630,6 +811,121 @@
                     <a href="https://t.me/HMCTricker" target="_blank">✈️ Telegram</a>
                     <a href="https://facebook.com/HMCTricker" target="_blank">📘 Facebook</a>
                 </div>
+            </div>
+
+            <div class="page-header" style="margin-top: 40px;">
+                <h2>📢 Thông Báo Hệ Thống</h2>
+            </div>
+            
+            <div id="notificationsList">
+                <div class="notification-item">
+                    <div class="notification-header">
+                        <span class="notification-badge new">Mới</span>
+                        <span class="notification-date">22/01/2026</span>
+                    </div>
+                    <h4>🎉 Chào mừng đến với HMCTricker!</h4>
+                    <p>Hệ thống dịch vụ mạng xã hội chuyên nghiệp đã chính thức hoạt động. Chúng tôi cam kết mang đến chất lượng dịch vụ tốt nhất!</p>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-header">
+                        <span class="notification-badge hot">Hot</span>
+                        <span class="notification-date">20/01/2026</span>
+                    </div>
+                    <h4>🔥 Giảm giá dịch vụ Dame 20%</h4>
+                    <p>Áp dụng cho tất cả các dịch vụ Dame trong tháng 1/2026. Nhanh tay đặt hàng để nhận ưu đãi!</p>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-header">
+                        <span class="notification-badge">Thông báo</span>
+                        <span class="notification-date">18/01/2026</span>
+                    </div>
+                    <h4>💰 Khuyến mãi nạp tiền</h4>
+                    <p>Nạp từ 500.000đ tặng thêm 5%, nạp từ 1.000.000đ tặng thêm 10%. Thời gian có hạn!</p>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-header">
+                        <span class="notification-badge">Cập nhật</span>
+                        <span class="notification-date">15/01/2026</span>
+                    </div>
+                    <h4>🎰 Ra mắt Vòng Quay May Mắn</h4>
+                    <p>Chỉ với 10.000đ/lượt, bạn có cơ hội nhận được giải thưởng lên đến 100.000đ. Thử vận may ngay!</p>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-header">
+                        <span class="notification-badge">Bảo trì</span>
+                        <span class="notification-date">12/01/2026</span>
+                    </div>
+                    <h4>⚙️ Nâng cấp hệ thống</h4>
+                    <p>Hệ thống đã được nâng cấp với nhiều tính năng mới, giao diện thân thiện và xử lý nhanh hơn.</p>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-header">
+                        <span class="notification-badge">Hướng dẫn</span>
+                        <span class="notification-date">10/01/2026</span>
+                    </div>
+                    <h4>📖 Hướng dẫn sử dụng dịch vụ</h4>
+                    <p>Nếu bạn chưa biết cách sử dụng, vui lòng liên hệ Admin qua Zalo hoặc Telegram để được hướng dẫn chi tiết.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div class="page" id="adminPanel">
+            <div class="page-header">
+                <h2>👑 Quản Trị Hệ Thống</h2>
+                <p>Quản lý toàn bộ tài khoản, dịch vụ và thông báo</p>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchAdminTab('users')">👥 Quản Lý Tài Khoản</button>
+                <button class="admin-tab" onclick="switchAdminTab('services')">💎 Quản Lý Giá Dịch Vụ</button>
+                <button class="admin-tab" onclick="switchAdminTab('notifications')">📢 Quản Lý Thông Báo</button>
+            </div>
+
+            <!-- Quản lý tài khoản -->
+            <div id="adminUsers" class="admin-content">
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="searchUser" placeholder="Tìm kiếm tài khoản..." style="width: 100%; padding: 12px; background: #2a2a2a; border: 2px solid #333; border-radius: 10px; color: #fff;" onkeyup="filterUsers()">
+                </div>
+                <div id="usersList"></div>
+            </div>
+
+            <!-- Quản lý giá dịch vụ -->
+            <div id="adminServices" class="admin-content" style="display: none;">
+                <div id="servicesList"></div>
+            </div>
+
+            <!-- Quản lý thông báo -->
+            <div id="adminNotifications" class="admin-content" style="display: none;">
+                <div class="service-card" style="margin-bottom: 20px;">
+                    <h4>➕ Thêm Thông Báo Mới</h4>
+                    <div class="form-group">
+                        <label>Loại thông báo</label>
+                        <select id="newNotifType" style="width: 100%; padding: 12px; background: #2a2a2a; border: 2px solid #333; border-radius: 10px; color: #fff;">
+                            <option value="new">Mới</option>
+                            <option value="hot">Hot</option>
+                            <option value="update">Cập nhật</option>
+                            <option value="maintenance">Bảo trì</option>
+                            <option value="guide">Hướng dẫn</option>
+                            <option value="normal">Thông báo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tiêu đề</label>
+                        <input type="text" id="newNotifTitle" placeholder="Nhập tiêu đề thông báo">
+                    </div>
+                    <div class="form-group">
+                        <label>Nội dung</label>
+                        <textarea id="newNotifContent" placeholder="Nhập nội dung thông báo" style="width: 100%; padding: 12px; background: #2a2a2a; border: 2px solid #333; border-radius: 10px; color: #fff; min-height: 100px;"></textarea>
+                    </div>
+                    <button class="btn" onclick="addNotification()">Thêm Thông Báo</button>
+                </div>
+                <div id="notificationsManageList"></div>
             </div>
         </div>
 
@@ -992,6 +1288,44 @@
     <script>
         let currentUser = null;
         let currentAuthTab = 'login';
+        let currentAdminTab = 'users';
+        const ADMIN_USERNAME = 'adminHMC2026';
+        const ADMIN_PASSWORD = 'HMCAdmin@2026!Secure';
+
+        // Khởi tạo dữ liệu mặc định
+        function initializeDefaultData() {
+            if (!localStorage.getItem('services')) {
+                const defaultServices = {
+                    dame: [
+                        {id: 'd1', name: 'Dame Tài Khoản Facebook TCN Thường', price: '300.000đ - 1.500.000đ'},
+                        {id: 'd2', name: 'Dame Tài Khoản Facebook Chuyên Nghiệp', price: '450.000đ - 1.700.000đ'},
+                        {id: 'd3', name: 'Dame Tài Khoản Facebook Locked', price: '500.000đ - 1.500.000đ'},
+                        {id: 'd4', name: 'Dame Tài Khoản Facebook Không AVT', price: '400.000đ - 1.900.000đ'},
+                        {id: 'd5', name: 'Dame Fanpage Facebook', price: '800.000đ - 3.000.000đ'},
+                        {id: 'd6', name: 'Dame Group Facebook', price: '1.000.000đ - 8.000.000đ'},
+                        {id: 'd7', name: 'Dame Tài Khoản TikTok', price: '600.000đ - 4.000.000đ'},
+                        {id: 'd8', name: 'Dame Video TikTok', price: '500.000đ - 3.000.000đ'},
+                        {id: 'd9', name: 'Dame Tài Khoản Instagram', price: '350.000đ - 2.000.000đ'},
+                        {id: 'd10', name: 'Dame Tài Khoản Youtube', price: '1.000.000đ - 9.000.000đ'},
+                        {id: 'd11', name: 'Dame Video Youtube', price: '800.000đ - 5.000.000đ'},
+                        {id: 'd12', name: 'Dame Tài Khoản Threads', price: '500.000đ - 2.500.000đ'}
+                    ]
+                };
+                localStorage.setItem('services', JSON.stringify(defaultServices));
+            }
+
+            if (!localStorage.getItem('notifications')) {
+                const defaultNotifications = [
+                    {id: 'n1', type: 'new', title: '🎉 Chào mừng đến với HMCTricker!', content: 'Hệ thống dịch vụ mạng xã hội chuyên nghiệp đã chính thức hoạt động. Chúng tôi cam kết mang đến chất lượng dịch vụ tốt nhất!', date: '22/01/2026'},
+                    {id: 'n2', type: 'hot', title: '🔥 Giảm giá dịch vụ Dame 20%', content: 'Áp dụng cho tất cả các dịch vụ Dame trong tháng 1/2026. Nhanh tay đặt hàng để nhận ưu đãi!', date: '20/01/2026'},
+                    {id: 'n3', type: 'normal', title: '💰 Khuyến mãi nạp tiền', content: 'Nạp từ 500.000đ tặng thêm 5%, nạp từ 1.000.000đ tặng thêm 10%. Thời gian có hạn!', date: '18/01/2026'},
+                    {id: 'n4', type: 'update', title: '🎰 Ra mắt Vòng Quay May Mắn', content: 'Chỉ với 10.000đ/lượt, bạn có cơ hội nhận được giải thưởng lên đến 100.000đ. Thử vận may ngay!', date: '15/01/2026'},
+                    {id: 'n5', type: 'maintenance', title: '⚙️ Nâng cấp hệ thống', content: 'Hệ thống đã được nâng cấp với nhiều tính năng mới, giao diện thân thiện và xử lý nhanh hơn.', date: '12/01/2026'},
+                    {id: 'n6', type: 'guide', title: '📖 Hướng dẫn sử dụng dịch vụ', content: 'Nếu bạn chưa biết cách sử dụng, vui lòng liên hệ Admin qua Zalo hoặc Telegram để được hướng dẫn chi tiết.', date: '10/01/2026'}
+                ];
+                localStorage.setItem('notifications', JSON.stringify(defaultNotifications));
+            }
+        }
 
         function switchAuthTab(tab) {
             currentAuthTab = tab;
@@ -1029,6 +1363,15 @@
             if (targetPage) {
                 targetPage.classList.add('active');
             }
+
+            if (pageId === 'adminPanel' && currentUser !== ADMIN_USERNAME) {
+                showPage('home');
+                return;
+            }
+
+            if (pageId === 'adminPanel') {
+                loadAdminData();
+            }
             
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -1046,6 +1389,11 @@
 
             if (!username || !password || !confirmPassword) {
                 messageDiv.innerHTML = '<div class="alert alert-error">Vui lòng điền đầy đủ thông tin!</div>';
+                return;
+            }
+
+            if (username === ADMIN_USERNAME) {
+                messageDiv.innerHTML = '<div class="alert alert-error">Tên tài khoản không hợp lệ!</div>';
                 return;
             }
 
@@ -1094,6 +1442,23 @@
                 return;
             }
 
+            // Kiểm tra tài khoản admin
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                currentUser = ADMIN_USERNAME;
+                localStorage.setItem('currentUser', ADMIN_USERNAME);
+                messageDiv.innerHTML = '<div class="alert alert-success">Đăng nhập Admin thành công!</div>';
+                
+                setTimeout(() => {
+                    document.getElementById('authModal').style.display = 'none';
+                    updateUserInterface();
+                    addAdminMenu();
+                    document.getElementById('loginUsername').value = '';
+                    document.getElementById('loginPassword').value = '';
+                    messageDiv.innerHTML = '';
+                }, 1000);
+                return;
+            }
+
             const users = JSON.parse(localStorage.getItem('users') || '{}');
             
             if (!users[username]) {
@@ -1131,18 +1496,266 @@
             const userInfo = document.getElementById('userInfo');
             
             if (currentUser) {
-                const users = JSON.parse(localStorage.getItem('users') || '{}');
-                const balance = users[currentUser]?.balance || 0;
-                document.getElementById('userBalance').textContent = balance.toLocaleString('vi-VN');
+                if (currentUser === ADMIN_USERNAME) {
+                    document.getElementById('userBalance').textContent = '∞';
+                } else {
+                    const users = JSON.parse(localStorage.getItem('users') || '{}');
+                    const balance = users[currentUser]?.balance || 0;
+                    document.getElementById('userBalance').textContent = balance.toLocaleString('vi-VN');
+                }
                 userInfo.style.display = 'flex';
             } else {
                 userInfo.style.display = 'none';
             }
         }
 
+        function addAdminMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const menu = sidebar.querySelector('.sidebar-menu');
+            
+            const existingAdmin = menu.querySelector('.admin-menu-item');
+            if (existingAdmin) return;
+            
+            const adminItem = document.createElement('li');
+            adminItem.className = 'admin-menu-item';
+            adminItem.innerHTML = '<a href="#" onclick="showPage(\'adminPanel\')" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white;">👑 Quản Trị Hệ Thống</a>';
+            menu.appendChild(adminItem);
+        }
+
+        function switchAdminTab(tab) {
+            currentAdminTab = tab;
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.admin-content').forEach(c => c.style.display = 'none');
+            
+            if (tab === 'users') {
+                document.querySelectorAll('.admin-tab')[0].classList.add('active');
+                document.getElementById('adminUsers').style.display = 'block';
+                loadUsers();
+            } else if (tab === 'services') {
+                document.querySelectorAll('.admin-tab')[1].classList.add('active');
+                document.getElementById('adminServices').style.display = 'block';
+                loadServices();
+            } else if (tab === 'notifications') {
+                document.querySelectorAll('.admin-tab')[2].classList.add('active');
+                document.getElementById('adminNotifications').style.display = 'block';
+                loadNotificationsManage();
+            }
+        }
+
+        function loadAdminData() {
+            if (currentAdminTab === 'users') loadUsers();
+            else if (currentAdminTab === 'services') loadServices();
+            else if (currentAdminTab === 'notifications') loadNotificationsManage();
+        }
+
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const usersList = document.getElementById('usersList');
+            
+            let html = '';
+            Object.keys(users).forEach(username => {
+                const user = users[username];
+                const date = new Date(user.createdAt).toLocaleDateString('vi-VN');
+                html += `
+                    <div class="user-card">
+                        <div>
+                            <div class="user-name">👤 ${username}</div>
+                            <div class="user-date">Đăng ký: ${date}</div>
+                        </div>
+                        <div class="user-balance">💰 ${user.balance.toLocaleString('vi-VN')}đ</div>
+                        <div></div>
+                        <div class="user-actions">
+                            <button class="btn-small" onclick="editUserBalance('${username}')">Sửa Số Dư</button>
+                            <button class="btn-small danger" onclick="deleteUser('${username}')">Xóa</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            usersList.innerHTML = html || '<p style="text-align: center; color: #666; padding: 40px;">Chưa có người dùng nào</p>';
+        }
+
+        function filterUsers() {
+            const search = document.getElementById('searchUser').value.toLowerCase();
+            const userCards = document.querySelectorAll('.user-card');
+            
+            userCards.forEach(card => {
+                const username = card.querySelector('.user-name').textContent.toLowerCase();
+                card.style.display = username.includes(search) ? 'grid' : 'none';
+            });
+        }
+
+        function editUserBalance(username) {
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const currentBalance = users[username].balance;
+            const newBalance = prompt(`Nhập số dư mới cho ${username}:\n(Số dư hiện tại: ${currentBalance.toLocaleString('vi-VN')}đ)`, currentBalance);
+            
+            if (newBalance !== null) {
+                const balance = parseInt(newBalance.replace(/[^0-9]/g, ''));
+                if (!isNaN(balance) && balance >= 0) {
+                    users[username].balance = balance;
+                    localStorage.setItem('users', JSON.stringify(users));
+                    loadUsers();
+                    alert('Cập nhật số dư thành công!');
+                } else {
+                    alert('Số dư không hợp lệ!');
+                }
+            }
+        }
+
+        function deleteUser(username) {
+            if (confirm(`Bạn có chắc muốn xóa tài khoản "${username}"?`)) {
+                const users = JSON.parse(localStorage.getItem('users') || '{}');
+                delete users[username];
+                localStorage.setItem('users', JSON.stringify(users));
+                loadUsers();
+                alert('Đã xóa tài khoản!');
+            }
+        }
+
+        function loadServices() {
+            const services = JSON.parse(localStorage.getItem('services') || '{}');
+            const servicesList = document.getElementById('servicesList');
+            
+            let html = '';
+            if (services.dame) {
+                services.dame.forEach(service => {
+                    html += `
+                        <div class="service-edit-card">
+                            <h4>${service.name}</h4>
+                            <input type="text" value="${service.price}" id="price_${service.id}" placeholder="Giá dịch vụ">
+                            <button class="btn" onclick="updateServicePrice('${service.id}')">Cập Nhật Giá</button>
+                        </div>
+                    `;
+                });
+            }
+            
+            servicesList.innerHTML = html;
+        }
+
+        function updateServicePrice(serviceId) {
+            const newPrice = document.getElementById(`price_${serviceId}`).value.trim();
+            if (!newPrice) {
+                alert('Vui lòng nhập giá!');
+                return;
+            }
+            
+            const services = JSON.parse(localStorage.getItem('services') || '{}');
+            const service = services.dame.find(s => s.id === serviceId);
+            if (service) {
+                service.price = newPrice;
+                localStorage.setItem('services', JSON.stringify(services));
+                alert('Cập nhật giá thành công!');
+                location.reload();
+            }
+        }
+
+        function loadNotificationsManage() {
+            const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+            const list = document.getElementById('notificationsManageList');
+            
+            let html = '';
+            notifications.forEach(notif => {
+                html += `
+                    <div class="service-edit-card">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                            <div>
+                                <span class="notification-badge ${notif.type === 'new' ? 'new' : notif.type === 'hot' ? 'hot' : ''}">${getNotifTypeName(notif.type)}</span>
+                                <span style="color: #666; margin-left: 10px;">${notif.date}</span>
+                            </div>
+                            <button class="btn-small danger" onclick="deleteNotification('${notif.id}')">Xóa</button>
+                        </div>
+                        <h4>${notif.title}</h4>
+                        <p style="color: #999;">${notif.content}</p>
+                    </div>
+                `;
+            });
+            
+            list.innerHTML = html;
+        }
+
+        function getNotifTypeName(type) {
+            const types = {
+                'new': 'Mới',
+                'hot': 'Hot',
+                'update': 'Cập nhật',
+                'maintenance': 'Bảo trì',
+                'guide': 'Hướng dẫn',
+                'normal': 'Thông báo'
+            };
+            return types[type] || 'Thông báo';
+        }
+
+        function addNotification() {
+            const type = document.getElementById('newNotifType').value;
+            const title = document.getElementById('newNotifTitle').value.trim();
+            const content = document.getElementById('newNotifContent').value.trim();
+            
+            if (!title || !content) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+                return;
+            }
+            
+            const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+            const newNotif = {
+                id: 'n' + Date.now(),
+                type: type,
+                title: title,
+                content: content,
+                date: new Date().toLocaleDateString('vi-VN')
+            };
+            
+            notifications.unshift(newNotif);
+            localStorage.setItem('notifications', JSON.stringify(notifications));
+            
+            document.getElementById('newNotifTitle').value = '';
+            document.getElementById('newNotifContent').value = '';
+            
+            loadNotificationsManage();
+            loadNotifications();
+            alert('Thêm thông báo thành công!');
+        }
+
+        function deleteNotification(id) {
+            if (confirm('Bạn có chắc muốn xóa thông báo này?')) {
+                const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+                const filtered = notifications.filter(n => n.id !== id);
+                localStorage.setItem('notifications', JSON.stringify(filtered));
+                loadNotificationsManage();
+                loadNotifications();
+                alert('Đã xóa thông báo!');
+            }
+        }
+
+        function loadNotifications() {
+            const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+            const list = document.getElementById('notificationsList');
+            
+            let html = '';
+            notifications.forEach(notif => {
+                html += `
+                    <div class="notification-item">
+                        <div class="notification-header">
+                            <span class="notification-badge ${notif.type === 'new' ? 'new' : notif.type === 'hot' ? 'hot' : ''}">${getNotifTypeName(notif.type)}</span>
+                            <span class="notification-date">${notif.date}</span>
+                        </div>
+                        <h4>${notif.title}</h4>
+                        <p>${notif.content}</p>
+                    </div>
+                `;
+            });
+            
+            list.innerHTML = html;
+        }
+
         function spinWheel() {
             if (!currentUser) {
                 alert('Vui lòng đăng nhập để sử dụng tính năng này!');
+                return;
+            }
+
+            if (currentUser === ADMIN_USERNAME) {
+                alert('Admin không thể sử dụng vòng quay may mắn!');
                 return;
             }
 
@@ -1171,7 +1784,31 @@
         }
 
         window.onload = function() {
+            initializeDefaultData();
+            loadNotifications();
+            
             const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                if (savedUser === ADMIN_USERNAME) {
+                    currentUser = ADMIN_USERNAME;
+                    document.getElementById('authModal').style.display = 'none';
+                    updateUserInterface();
+                    addAdminMenu();
+                } else {
+                    const users = JSON.parse(localStorage.getItem('users') || '{}');
+                    if (users[savedUser]) {
+                        currentUser = savedUser;
+                        document.getElementById('authModal').style.display = 'none';
+                        updateUserInterface();
+                    } else {
+                        localStorage.removeItem('currentUser');
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+</html>.getItem('currentUser');
             if (savedUser) {
                 const users = JSON.parse(localStorage.getItem('users') || '{}');
                 if (users[savedUser]) {
