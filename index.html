@@ -29,20 +29,14 @@
             --light: #ffffff;
             --gray: #8892b0;
             --success: #00ff88;
-            --warning: #ffaa00;
-            --danger: #ff0055;
             
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
             --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            
-            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
-            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.2);
             --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.3);
-            --shadow-neon: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body {
@@ -50,87 +44,6 @@
             background: var(--darker);
             color: var(--light);
             line-height: 1.6;
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-        }
-
-        html {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        body.dark-mode {
-            --dark: #1a202c;
-            --darker: #f7fafc;
-            --light: #1a202c;
-            --gray: #4a5568;
-            background: #f7fafc;
-            color: #1a202c;
-        }
-        
-        body.dark-mode .animated-bg {
-            background: #f7fafc;
-        }
-        
-        body.dark-mode .animated-bg::before {
-            opacity: 0.5;
-        }
-        
-        body.dark-mode header {
-            background: rgba(255, 255, 255, 0.95);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        body.dark-mode .logo {
-            -webkit-text-fill-color: transparent;
-        }
-        
-        body.dark-mode nav a {
-            color: #4a5568;
-        }
-        
-        body.dark-mode nav a:hover {
-            color: #667eea;
-        }
-        
-        body.dark-mode .hero p,
-        body.dark-mode .section-header p,
-        body.dark-mode .feature-card p,
-        body.dark-mode .trust-badge p,
-        body.dark-mode .stat-label,
-        body.dark-mode .faq-answer p,
-        body.dark-mode .testimonial-card p,
-        body.dark-mode .footer-section p,
-        body.dark-mode .service-item .price {
-            color: #4a5568;
-        }
-        
-        body.dark-mode .feature-card,
-        body.dark-mode .service-category,
-        body.dark-mode .service-item,
-        body.dark-mode .pricing-card,
-        body.dark-mode .testimonial-card,
-        body.dark-mode .faq-item,
-        body.dark-mode .trust-badge,
-        body.dark-mode .process-content {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        body.dark-mode .stats-section {
-            background: rgba(255, 255, 255, 0.7);
-        }
-        
-        body.dark-mode footer {
-            background: rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        body.dark-mode .dark-mode-toggle {
-            background: rgba(0, 0, 0, 0.1);
-            color: #1a202c;
         }
 
         /* Animated Background */
@@ -152,18 +65,16 @@
             height: 200%;
             background: 
                 radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(67, 233, 123, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.1) 0%, transparent 50%);
             animation: bgFloat 20s ease-in-out infinite;
         }
 
         @keyframes bgFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-5%, 5%) rotate(120deg); }
-            66% { transform: translate(5%, -5%) rotate(240deg); }
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-5%, 5%); }
         }
 
-        /* Scroll Progress Bar */
+        /* Scroll Progress */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -172,39 +83,6 @@
             background: var(--gradient-main);
             z-index: 10000;
             transition: width 0.1s ease;
-        }
-
-        /* Loading Screen - Disabled */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--darker);
-            display: none; /* Disabled by default */
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-
-        .loading-screen.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader {
-            width: 80px;
-            height: 80px;
-            border: 4px solid rgba(102, 126, 234, 0.2);
-            border-top: 4px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
 
         /* Header */
@@ -222,7 +100,7 @@
 
         header.scrolled {
             padding: 0.5rem 0;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
         }
 
         .header-content {
@@ -241,64 +119,14 @@
             background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             text-decoration: none;
             letter-spacing: 2px;
-            animation: glow 2s ease-in-out infinite;
-            white-space: nowrap;
         }
 
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.1rem;
-                letter-spacing: 1px;
-            }
-        }
-
-        @keyframes glow {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5)); }
-            50% { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8)); }
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--gray);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
+        .header-right {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-        }
-
-        nav a i {
-            font-size: 1rem;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-main);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            gap: 1rem;
         }
 
         .cta-btn {
@@ -309,9 +137,9 @@
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
         .cta-btn:hover {
@@ -319,86 +147,145 @@
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
+        /* Hamburger Menu Button */
+        .menu-toggle {
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
             cursor: pointer;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            gap: 5px;
             transition: all 0.3s ease;
         }
 
-        .dark-mode-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(20deg);
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
         }
 
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
+        .menu-toggle span {
+            width: 24px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Sidebar Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: rgba(10, 14, 39, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 9999;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .sidebar.active {
+            right: 0;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
-            cursor: pointer;
+            margin-bottom: 2rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @media (max-width: 1200px) {
-            .mobile-menu-btn {
-                display: block;
-            }
+        .service-category-menu {
+            margin-bottom: 2rem;
+        }
 
-            nav {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                width: 100%;
-                background: rgba(10, 14, 39, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 1.5rem;
-                gap: 0.8rem;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                z-index: 999;
-            }
+        .service-category-menu h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-            nav.active {
-                max-height: 500px;
-                opacity: 1;
-                visibility: visible;
-            }
+        .service-category-menu h3:hover {
+            color: var(--light);
+        }
 
-            nav a {
-                width: 100%;
-                padding: 0.8rem;
-                text-align: center;
-                justify-content: center;
-                background: rgba(255, 255, 255, 0.05);
-                border-radius: 8px;
-                font-size: 1rem;
-            }
+        .service-category-menu h3 i {
+            font-size: 1rem;
+        }
 
-            nav .dark-mode-toggle {
-                width: 100%;
-            }
+        .service-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
 
-            nav .cta-btn {
-                width: 100%;
-                text-align: center;
-                justify-content: center;
-            }
+        .service-category-menu.active .service-list {
+            max-height: 2000px;
+        }
+
+        .service-list a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .service-list a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            padding-left: 1.5rem;
         }
 
         /* Hero Section */
@@ -409,29 +296,6 @@
             justify-content: center;
             text-align: center;
             padding: 8rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: heroFloat 8s ease-in-out infinite;
-        }
-
-        @keyframes heroFloat {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(100px, 50px); }
-        }
-
-        .hero-content {
-            max-width: 900px;
-            z-index: 1;
         }
 
         .hero h1 {
@@ -442,56 +306,23 @@
             background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             animation: fadeInUp 1s ease;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--gray);
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease 0.2s backwards;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        .hero .description {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
             animation: fadeInUp 1s ease 0.4s backwards;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--gradient-main);
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
         }
 
         @keyframes fadeInUp {
@@ -505,136 +336,134 @@
             }
         }
 
-        /* Trust Badges Section */
-        .trust-badges {
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .trust-badges-container {
-            max-width: 1400px;
+        /* Guide Section */
+        .guide-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
         }
 
-        .trust-badge {
-            padding: 1.5rem;
+        .guide-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .guide-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .guide-step {
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
             transition: all 0.3s ease;
         }
 
-        .trust-badge:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.05);
+        .guide-step:hover {
+            transform: translateY(-10px);
             border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
         }
 
-        .trust-badge i {
-            font-size: 2.5rem;
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem;
+        }
+
+        .guide-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .guide-step p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            margin: 4rem auto;
+            max-width: 1200px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
             background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .trust-badge h4 {
-            font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
-        .trust-badge p {
+        .stat-label {
+            font-size: 1.1rem;
             color: var(--gray);
-            font-size: 0.9rem;
         }
 
-        /* Section Styles */
-        section {
+        /* Features */
+        .features-section {
             padding: 6rem 2rem;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            box-sizing: border-box;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
+        .features-section h2 {
             font-family: 'Orbitron', sans-serif;
             font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+            text-align: center;
+            margin-bottom: 3rem;
             background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
-        @media (max-width: 640px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .feature-card {
-            padding: 2rem;
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-main);
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-xl);
             border-color: var(--primary);
-        }
-
-        .feature-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .feature-card > * {
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
         }
 
         .feature-icon {
@@ -659,411 +488,6 @@
             line-height: 1.8;
         }
 
-        /* Services Section */
-        .services-container {
-            display: grid;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .service-category {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-category h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .service-category h4 {
-            color: var(--primary);
-            font-size: 1.3rem;
-            margin: 2.5rem 0 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .service-category h4:first-of-type {
-            margin-top: 0;
-            padding-top: 0;
-            border-top: none;
-        }
-
-        .service-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 640px) {
-            .service-items {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .service-item {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .service-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .service-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .service-item .price {
-            color: var(--success);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        /* Pricing Section */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        @media (max-width: 640px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--primary);
-            transform: scale(1.05);
-        }
-
-        .pricing-card.featured::before {
-            content: 'PHỔ BIẾN';
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: var(--gradient-main);
-            color: white;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary);
-        }
-
-        .pricing-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin: 1rem 0;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .pricing-features li {
-            padding: 0.7rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pricing-features li i {
-            color: var(--success);
-        }
-
-        /* Process Timeline */
-        .process-timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--gradient-main);
-            transform: translateX(-50%);
-        }
-
-        .process-step {
-            display: flex;
-            align-items: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .process-step:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .process-content {
-            width: calc(50% - 40px);
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .process-number {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-main);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-        }
-
-        /* FAQ Section */
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .faq-question h4 {
-            font-size: 1.1rem;
-        }
-
-        .faq-question i {
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-
-        .faq-answer p {
-            padding: 0 1.5rem 1.5rem;
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        /* Testimonials */
-        .testimonials-slider {
-            position: relative;
-            overflow: hidden;
-            padding: 2rem 0;
-            width: 100%;
-        }
-
-        .testimonials-track {
-            display: flex;
-            gap: 2rem;
-            transition: transform 0.5s ease;
-        }
-
-        .testimonial-card {
-            min-width: 350px;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 640px) {
-            .testimonial-card {
-                min-width: 85vw;
-            }
-        }
-
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-        }
-
-        .testimonial-info h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .testimonial-info p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .testimonial-rating {
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        .slider-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .slider-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .slider-btn:hover {
-            background: var(--primary);
-        }
-
-        /* Stats Counter */
-        .stats-section {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 30px;
-            padding: 4rem 2rem;
-            margin: 4rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            position: relative;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--gray);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 6rem 2rem;
-            background: var(--gradient-main);
-            border-radius: 30px;
-            margin: 4rem 0;
-        }
-
-        .cta-section h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .cta-section .btn-primary {
-            background: white;
-            color: var(--secondary);
-        }
-
         /* Footer */
         footer {
             background: rgba(0, 0, 0, 0.3);
@@ -1072,7 +496,7 @@
         }
 
         .footer-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1086,27 +510,26 @@
             color: var(--primary);
         }
 
+        .footer-section p,
+        .footer-section ul li {
+            color: var(--gray);
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
         .footer-section ul {
             list-style: none;
         }
 
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section ul li a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
+        .footer-section ul li i {
+            margin-right: 0.5rem;
             color: var(--primary);
         }
 
         .social-links {
             display: flex;
             gap: 1rem;
+            margin-top: 1rem;
         }
 
         .social-links a {
@@ -1134,13 +557,7 @@
             color: var(--gray);
         }
 
-        .footer-bottom a {
-            color: var(--gray);
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-
-        /* Floating Action Buttons */
+        /* Floating Buttons */
         .floating-buttons {
             position: fixed;
             bottom: 30px;
@@ -1161,17 +578,17 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             animation: floatBounce 2s ease-in-out infinite;
-        }
-
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
         }
 
         .zalo-btn {
             background: #0068FF;
+            color: white;
+        }
+
+        .telegram-btn {
+            background: #0088cc;
             color: white;
         }
 
@@ -1180,7 +597,6 @@
             color: white;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
         }
 
         .back-to-top.show {
@@ -1190,7 +606,6 @@
 
         .float-btn:hover {
             transform: translateY(-5px) scale(1.1);
-            box-shadow: var(--shadow-xl);
         }
 
         @keyframes floatBounce {
@@ -1198,200 +613,7 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Scroll Animations */
-        .scroll-reveal {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.8s ease;
-        }
-
-        .scroll-reveal.animated {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .scroll-reveal.animated.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Ensure content is visible if JS fails */
-        @media (prefers-reduced-motion: reduce) {
-            .scroll-reveal {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-
-            .hero p {
-                font-size: 1rem;
-                padding: 0 1rem;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .section-header p {
-                font-size: 1rem;
-                padding: 0 1rem;
-            }
-
-            section {
-                padding: 4rem 1rem;
-            }
-
-            .features-grid,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .service-items {
-                grid-template-columns: 1fr;
-            }
-
-            .process-timeline::before {
-                left: 20px;
-            }
-
-            .process-step {
-                flex-direction: column !important;
-                align-items: flex-start;
-                padding-left: 60px;
-            }
-
-            .process-content {
-                width: 100%;
-            }
-
-            .process-number {
-                left: 20px;
-                transform: translateX(0);
-                width: 50px;
-                height: 50px;
-                font-size: 1.3rem;
-            }
-
-            .testimonial-card {
-                min-width: 280px;
-            }
-
-            .floating-buttons {
-                right: 15px;
-                bottom: 15px;
-            }
-
-            .float-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .cta-section h2 {
-                font-size: 2rem;
-            }
-
-            .cta-section p {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 8rem 1rem 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 0.95rem;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-number {
-                font-size: 2.2rem;
-            }
-
-            .service-category {
-                padding: 1.5rem;
-            }
-
-            .service-category h3 {
-                font-size: 1.5rem;
-            }
-
-            .pricing-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .testimonial-card {
-                min-width: 260px;
-                padding: 1.5rem;
-            }
-
-            .float-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-            }
-
-            .floating-buttons {
-                bottom: 10px;
-                right: 10px;
-            }
-
-            .process-step {
-                padding-left: 50px;
-            }
-
-            .process-number {
-                width: 40px;
-                height: 40px;
-                font-size: 1.1rem;
-                left: 15px;
-            }
-
-            .process-timeline::before {
-                left: 15px;
-            }
-        }
-
-        /* Custom Scrollbar */
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -1405,8 +627,95 @@
             border-radius: 10px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .description {
+                font-size: 1rem;
+            }
+
+            .guide-section h2,
+            .features-section h2 {
+                font-size: 2rem;
+            }
+
+            .guide-steps,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-buttons {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .cta-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .menu-toggle {
+                width: 40px;
+                height: 40px;
+            }
+
+            .menu-toggle span {
+                width: 20px;
+            }
+
+            .hero {
+                padding: 7rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .guide-section,
+            .features-section {
+                padding: 4rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1417,1095 +726,354 @@
     <!-- Animated Background -->
     <div class="animated-bg"></div>
 
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <h2><i class="fas fa-bars"></i> DANH MỤC DỊCH VỤ</h2>
+
+        <div class="service-category-menu">
+            <h3><i class="fas fa-user-plus"></i> DAME ACCOUNT <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.8rem;"></i></h3>
+            <div class="service-list">
+                <a href="#dame">Dame Tài Khoản Facebook TCN Thường</a>
+                <a href="#dame">Dame Tài Khoản Facebook Chuyên Nghiệp</a>
+                <a href="#dame">Dame Tài Khoản Facebook Locked</a>
+                <a href="#dame">Dame Tài Khoản Facebook Không AVT</a>
+                <a href="#dame">Dame Fanpage Facebook</a>
+                <a href="#dame">Dame Group Facebook</a>
+                <a href="#dame">Dame Tài Khoản TikTok</a>
+                <a href="#dame">Dame Video TikTok</a>
+                <a href="#dame">Dame Tài Khoản Instagram</a>
+                <a href="#dame">Dame Tài Khoản Youtube</a>
+                <a href="#dame">Dame Video Youtube</a>
+                <a href="#dame">Dame Tài Khoản Threads</a>
+            </div>
+        </div>
+
+        <div class="service-category-menu">
+            <h3><i class="fas fa-unlock"></i> UNLOCK & KHÁNG NGHỊ <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.8rem;"></i></h3>
+            <div class="service-list">
+                <a href="#unlock">Mở Khóa Facebook Dạng Két Chính Chủ</a>
+                <a href="#unlock">Mở Khóa Facebook Ko Chính Chủ</a>
+                <a href="#unlock">Mở Khóa Facebook Đình Chỉ (282)</a>
+                <a href="#unlock">Mở Khóa Facebook Treo Link 282</a>
+                <a href="#unlock">Mở Khóa Facebook Vô Hiệu Hoá Vĩnh Viễn</a>
+                <a href="#unlock">Kháng Vi Phạm Facebook</a>
+                <a href="#unlock">Lấy Lại Facebook Bị Hack</a>
+                <a href="#unlock">Verify Bảo Vệ Tài Khoản Facebook</a>
+                <a href="#unlock">Mở Khóa TikTok Cấm Vĩnh Viễn</a>
+                <a href="#unlock">Mở Khóa TikTok Die Bản Quyền</a>
+                <a href="#unlock">Mở Khóa TikTok Giới Hạn Độ Tuổi</a>
+                <a href="#unlock">Khiếu Nại Video TikTok</a>
+                <a href="#unlock">Bảo Kê Tài Khoản TikTok</a>
+                <a href="#unlock">Mở Khóa Instagram</a>
+                <a href="#unlock">Kháng Nghị Video Youtube</a>
+            </div>
+        </div>
+
+        <div class="service-category-menu">
+            <h3><i class="fas fa-check-circle"></i> TICK XANH <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.8rem;"></i></h3>
+            <div class="service-list">
+                <a href="#tickxanh">Tick Xanh Profile Facebook KBH</a>
+                <a href="#tickxanh">Tick Xanh Profile Facebook BH</a>
+                <a href="#tickxanh">Tick Xanh Facebook Chính Chủ KBH</a>
+                <a href="#tickxanh">Tick Xanh Facebook Chính Chủ BH</a>
+                <a href="#tickxanh">Tick Xanh Instagram BH</a>
+                <a href="#tickxanh">Tick Xanh Instagram Chính Chủ BH</a>
+            </div>
+        </div>
+
+        <div class="service-category-menu">
+            <h3><i class="fas fa-heart"></i> TĂNG TƯƠNG TÁC <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.8rem;"></i></h3>
+            <div class="service-list">
+                <a href="#tuongtac">Tăng Cảm Xúc Facebook</a>
+                <a href="#tuongtac">Tăng Follow Facebook</a>
+                <a href="#tuongtac">Tăng Mắt Live Facebook</a>
+                <a href="#tuongtac">Tăng Tim TikTok</a>
+                <a href="#tuongtac">Tăng Follow TikTok</a>
+                <a href="#tuongtac">Tăng View TikTok</a>
+                <a href="#tuongtac">Tăng Tim Instagram</a>
+                <a href="#tuongtac">Tăng Follow Instagram</a>
+                <a href="#tuongtac">Dịch Vụ Shopee</a>
+                <a href="#tuongtac">Dịch Vụ Google Maps</a>
+            </div>
+        </div>
+
+        <div class="service-category-menu">
+            <h3><i class="fas fa-ad"></i> QUẢNG CÁO <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.8rem;"></i></h3>
+            <div class="service-list">
+                <a href="#ads">Quảng Cáo Facebook</a>
+                <a href="#ads">Quảng Cáo TikTok</a>
+                <a href="#ads">Quảng Cáo Instagram</a>
+                <a href="#ads">Quảng Cáo Google</a>
+                <a href="#ads">Quảng Cáo Threads</a>
+                <a href="#ads">Quảng Cáo Douyin</a>
+            </div>
+        </div>
+
+        <div class="service-category-menu">
+            <h3><i class="fas fa-code"></i> TUT & TOOLS <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.8rem;"></i></h3>
+            <div class="service-list">
+                <a href="#tools">Agency Bảo Kê TikTok</a>
+                <a href="#tools">Tool Dame Facebook</a>
+                <a href="#tools">TUT Unlock 282</a>
+                <a href="#tools">TUT Unlock 956</a>
+                <a href="#tools">TUT Lách Vi Phạm MXH</a>
+                <a href="#tools">TUT Lên Tick Xanh</a>
+                <a href="#tools">Build Website</a>
+                <a href="#tools">Tool Upload Video TikTok</a>
+            </div>
+        </div>
+
+        <div class="service-category-menu">
+            <h3><i class="fas fa-graduation-cap"></i> KHÓA HỌC <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.8rem;"></i></h3>
+            <div class="service-list">
+                <a href="#courses">Khóa Học DV Facebook</a>
+                <a href="#courses">Khóa Học DV TikTok</a>
+                <a href="#courses">Khóa Học Ads Facebook</a>
+                <a href="#courses">Khóa Học Ads TikTok</a>
+                <a href="#courses">Khóa Học Landing Page</a>
+                <a href="#courses">Full Package - Tất Cả Khóa Học</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="header-content">
-            <a href="#" class="logo">HOANGMINHCHIEN.XYZ</a>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav>
-                <a href="#home"><i class="fas fa-shield-alt"></i> Bảo Mật Tuyệt Đối</a>
-                <a href="#services"><i class="fas fa-bolt"></i> Xử Lý Nhanh 24/7</a>
-                <a href="#courses"><i class="fas fa-headset"></i> Hỗ Trợ Liên Tục</a>
-                <a href="#testimonials"><i class="fas fa-award"></i> Chất Lượng Cao</a>
-                <a href="#contact"><i class="fas fa-users"></i> 10,000+ Khách Hàng</a>
-                <button class="dark-mode-toggle">
-                    <i class="fas fa-moon"></i>
-                </button>
+            <a href="#home" class="logo">HOANGMINHCHIEN.XYZ</a>
+            <div class="header-right">
                 <a href="https://zalo.me/0345161185" class="cta-btn">Nhắn Zalo</a>
-            </nav>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1 class="scroll-reveal">Dịch Vụ MXH Chiến Tricker</h1>
-            <p class="scroll-reveal">Khám phá các khóa học chuyên sâu giúp bạn có được nhiều kiến thức bổ ích về MXH và tiếp thị số. Từ các TUT Trick khai thác, bảo mật đến chiến lược quảng cáo bán hàng hiệu quả.</p>
+            <h1>Chào Mừng Đến Với<br>Chiến Tricker</h1>
+            <p class="subtitle">Dịch Vụ MXH & Đào Tạo Chuyên Nghiệp</p>
+            <p class="description">
+                Chúng tôi cung cấp các dịch vụ mạng xã hội chất lượng cao và khóa học chuyên sâu 
+                giúp bạn chinh phục mọi nền tảng số. Với hơn 10,000+ khách hàng hài lòng, 
+                chúng tôi cam kết mang đến giải pháp tốt nhất cho mọi nhu cầu của bạn.
+            </p>
         </div>
     </section>
 
-    <!-- Trust Badges -->
-    <div class="trust-badges scroll-reveal">
-        <div class="trust-badges-container">
-            <div class="trust-badge">
-                <i class="fas fa-shield-alt"></i>
-                <h4>Bảo Mật Tuyệt Đối</h4>
-                <p>Cam kết không lưu thông tin</p>
-            </div>
-            <div class="trust-badge">
-                <i class="fas fa-bolt"></i>
-                <h4>Xử Lý Nhanh</h4>
-                <p>Hoàn thành trong 5-30 phút</p>
-            </div>
-            <div class="trust-badge">
-                <i class="fas fa-headset"></i>
-                <h4>Hỗ Trợ 24/7</h4>
-                <p>Luôn sẵn sàng giúp đỡ</p>
-            </div>
-            <div class="trust-badge">
-                <i class="fas fa-award"></i>
-                <h4>Chất Lượng Cao</h4>
-                <p>Đảm bảo kết quả tốt nhất</p>
-            </div>
-            <div class="trust-badge">
-                <i class="fas fa-users"></i>
-                <h4>10,000+ KH</h4>
-                <p>Tin tưởng và hài lòng</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Section -->
-    <section id="about" class="scroll-reveal">
-        <div class="section-header">
-            <h2>VỀ DỊCH VỤ CỦA CHÚNG TÔI</h2>
-            <p>KHÁM PHÁ NHỮNG TÍNH NĂNG SÁNG TẠO NHẤT GIÚP CHÚNG TÔI KHÁC BIỆT SO VỚI ĐỐI THỦ CẠNH TRANH</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Đáng Tin Cậy Từ Cộng Đồng</h3>
-                <p>Hơn 10.000+ khách hàng đã tin tưởng và đánh giá tích cực trên toàn nền tảng.</p>
+    <!-- Guide Section -->
+    <section class="guide-section">
+        <h2>Hướng Dẫn Sử Dụng</h2>
+        <div class="guide-steps">
+            <div class="guide-step">
+                <div class="step-number">1</div>
+                <h3>Chọn Dịch Vụ</h3>
+                <p>Click vào nút <strong>3 gạch</strong> góc trên bên phải để xem danh mục dịch vụ. Chọn loại dịch vụ bạn cần từ menu.</p>
             </div>
 
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h3>Hiệu quả vượt mong đợi</h3>
-                <p>Giúp bạn tiết kiệm thời gian, tối ưu hiệu suất và đạt kết quả rõ rệt chỉ sau vài lần sử dụng.</p>
+            <div class="guide-step">
+                <div class="step-number">2</div>
+                <h3>Liên Hệ Tư Vấn</h3>
+                <p>Nhắn tin cho chúng tôi qua <strong>Zalo</strong> hoặc <strong>Telegram</strong> để được tư vấn chi tiết về dịch vụ và báo giá.</p>
             </div>
 
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>Không Chờ Đợi, Không Rườm Rà</h3>
-                <p>Quy trình xử lý tinh gọn – bạn yêu cầu, chúng tôi thực hiện ngay.</p>
+            <div class="guide-step">
+                <div class="step-number">3</div>
+                <h3>Thanh Toán</h3>
+                <p>Thanh toán qua các hình thức: chuyển khoản ngân hàng, ví điện tử (Momo, ZaloPay) hoặc thẻ cào.</p>
+            </div>
+
+            <div class="guide-step">
+                <div class="step-number">4</div>
+                <h3>Nhận Kết Quả</h3>
+                <p>Nhận kết quả nhanh chóng từ 5-30 phút. Được hỗ trợ 24/7 nếu có bất kỳ vấn đề gì.</p>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <div class="stats-section scroll-reveal">
+    <!-- Stats -->
+    <div class="stats-section">
         <div class="stats-grid">
             <div class="stat-item">
-                <div class="stat-number" data-target="50000">0</div>
-                <div class="stat-label">Người Dùng</div>
+                <div class="stat-number" data-target="10000">0</div>
+                <div class="stat-label">Khách Hàng</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" data-target="99.9">0</div>
-                <div class="stat-label">% Thời Gian Hoạt Động</div>
+                <div class="stat-number" data-target="99">0</div>
+                <div class="stat-label">% Hài Lòng</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">24/7</div>
-                <div class="stat-label">Support</div>
+                <div class="stat-label">Hỗ Trợ</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number" data-target="100">0</div>
-                <div class="stat-label">+ Features</div>
+                <div class="stat-label">+ Dịch Vụ</div>
             </div>
         </div>
     </div>
 
-    <!-- Services Section -->
-    <section id="services" class="scroll-reveal">
-        <div class="section-header">
-            <h2>DỊCH VỤ MXH Chiến Tricker</h2>
-            <p>Khám phá các khóa học chuyên sâu giúp bạn có được nhiều kiến thức bổ ích về mạng xã hội, kiếm tiền online và tiếp thị số.</p>
-        </div>
-
-        <div class="services-container">
-            <!-- DAME ACCOUNT -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-user-plus"></i> DAME ACCOUNT</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Facebook TCN Thường</h4>
-                        <div class="price">150.000đ - 1.500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Facebook Chuyên Nghiệp</h4>
-                        <div class="price">300.000đ - 1.700.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Facebook Locked</h4>
-                        <div class="price">250.000đ - 1.700.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Facebook Không AVT</h4>
-                        <div class="price">300.000đ - 1.700.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Fanpage Facebook</h4>
-                        <div class="price">1.000.000đ - 3.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Group Facebook</h4>
-                        <div class="price">2.000.000đ - 8.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản TikTok</h4>
-                        <div class="price">300.000đ - 4.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Video TikTok</h4>
-                        <div class="price">250.000đ - 2.500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Instagram</h4>
-                        <div class="price">250.000đ - 1.500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Youtube</h4>
-                        <div class="price">500.000đ - 5.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Video Youtube</h4>
-                        <div class="price">400.000đ - 5.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Threads</h4>
-                        <div class="price">300.000đ - 2.500.000đ</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- UNLOCK & KHÁNG NGHỊ -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-unlock"></i> UNLOCK & KHÁNG NGHỊ</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Dạng Két Chính Chủ</h4>
-                        <div class="price">250.000đ - 400.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Dạng Két Ko Chính Chủ</h4>
-                        <div class="price">300.000đ - 550.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Bị Đình Chỉ (282)</h4>
-                        <div class="price">200.000đ - 350.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Bị Treo Link 282</h4>
-                        <div class="price">500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Vô Hiệu Hoá Vĩnh Viễn (FAQ)</h4>
-                        <div class="price">650.000đ - 7.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Kháng Vi Phạm Facebook</h4>
-                        <div class="price">100.000đ - 500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lấy Lại Facebook Bị Hack</h4>
-                        <div class="price">850.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Verify Bảo Vệ Tài Khoản Facebook</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa TikTok Cấm Vĩnh Viễn</h4>
-                        <div class="price">300.000đ - 1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa TikTok Die Bản Quyền</h4>
-                        <div class="price">300.000đ - 800.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa TikTok Giới Hạn Độ Tuổi</h4>
-                        <div class="price">250.000đ - 600.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Khiếu Nại Video TikTok</h4>
-                        <div class="price">100.000đ - 450.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Bảo Kê Tài Khoản TikTok</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tài Khoản Agency TikTok</h4>
-                        <div class="price">5.500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Tài Khoản Instagram</h4>
-                        <div class="price">250.000đ - 800.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Kháng Nghị Video Youtube</h4>
-                        <div class="price">200.000đ - 1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Kháng Nghị Bài viết Instagram</h4>
-                        <div class="price">200.000đ - 500.000đ</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DỊCH VỤ TICK XANH -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-check-circle"></i> DỊCH VỤ TICK XANH</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Facebook KBH</h4>
-                        <div class="price">400.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Facebook BH</h4>
-                        <div class="price">600.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Facebook Chính Chủ KBH</h4>
-                        <div class="price">650.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Facebook Chính Chủ BH</h4>
-                        <div class="price">800.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Instagram BH</h4>
-                        <div class="price">400.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Instagram Chính Chủ BH</h4>
-                        <div class="price">700.000đ</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TĂNG TƯƠNG TÁC -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-heart"></i> DỊCH VỤ TĂNG TƯƠNG TÁC</h3>
-                
-                <h4 style="color: var(--primary); margin: 2.5rem 0 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.3rem;">Facebook</h4>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Tăng Cảm Xúc</h4>
-                        <div class="price">15.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Follow</h4>
-                        <div class="price">20.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Mắt Live</h4>
-                        <div class="price">380.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Đánh Giá Fanpage</h4>
-                        <div class="price">30.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng View Story</h4>
-                        <div class="price">20.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Tương Tác Toàn Diện</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                </div>
-
-                <h4 style="color: var(--primary); margin: 2.5rem 0 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.3rem;">TikTok</h4>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Tăng Tim</h4>
-                        <div class="price">15.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Follow</h4>
-                        <div class="price">40.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Mắt Live</h4>
-                        <div class="price">380.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng View</h4>
-                        <div class="price">5.000đ / 1.000 Tương Tác</div>
-                    </div>
-                </div>
-
-                <h4 style="color: var(--primary); margin: 2.5rem 0 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.3rem;">Instagram</h4>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Tăng Tim</h4>
-                        <div class="price">25.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Follow</h4>
-                        <div class="price">35.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Mắt Live</h4>
-                        <div class="price">380.000đ / 1.000 Tương Tác</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng View</h4>
-                        <div class="price">10.000đ / 1.000 Tương Tác</div>
-                    </div>
-                </div>
-
-                <h4 style="color: var(--primary); margin: 2.5rem 0 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.3rem;">Khác</h4>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Tăng Follow Shopee</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Tim Shopee</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Mắt Live Shopee</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Đánh Giá Google Maps</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Xác minh Google Maps</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dịch Vụ Telegram</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- QUẢNG CÁO -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-ad"></i> DỊCH VỤ QUẢNG CÁO</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Facebook</h4>
-                        <div class="price">min 500.000đ / 1 Day</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo TikTok</h4>
-                        <div class="price">min 500.000đ / 1 Day</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Instagram</h4>
-                        <div class="price">min 500.000đ / 1 Day</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Google</h4>
-                        <div class="price">min 1.000.000đ / 1 Day</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Threads</h4>
-                        <div class="price">min 700.000đ / 1 Day</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Douyin</h4>
-                        <div class="price">min 2.000.000đ / 1 Day</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GMAIL & EMAIL -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-envelope"></i> GMAIL & EMAIL SERVICE</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Lấy Lại Gmail Bị Mất/Hack</h4>
-                        <div class="price">500.000đ - 1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Change Gmail</h4>
-                        <div class="price">200.000đ - 1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Unlock Gmail</h4>
-                        <div class="price">500.000đ - 25.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Disable Gmail</h4>
-                        <div class="price">3.000.000đ</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- VIA, CLONE, VPN -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-tools"></i> VIA, CLONE, VPN & TÀI NGUYÊN</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Via Tick Chuyên Dame</h4>
-                        <div class="price">450.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Via Meta Up Tick Facebook + Proxy Private</h4>
-                        <div class="price">500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>HMA VPN</h4>
-                        <div class="price">50.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chiến Tricker-BlackGPT</h4>
-                        <div class="price">50.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Group Zalo Full Member</h4>
-                        <div class="price">400.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Clone/Via Facebook</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool + TUT Auto Dame FB</h4>
-                        <div class="price">100.000đ - 2.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tài Khoản Agency TikTok</h4>
-                        <div class="price">5.000.000đ</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TUT & SOURCE CODE -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-code"></i> TUT, SOURCE CODE & TOOL</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Agency Bảo Kê TikTok</h4>
-                        <div class="price">500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tut + Tool Dame FB</h4>
-                        <div class="price">200.000đ - 1.500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Unlock 282</h4>
-                        <div class="price">300.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Unlock 956</h4>
-                        <div class="price">300.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Lách Vi Phạm MXH</h4>
-                        <div class="price">250.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Lên Tick Xanh FB</h4>
-                        <div class="price">500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Back Acc</h4>
-                        <div class="price">300.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Tài Nguyên ADS</h4>
-                        <div class="price">1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Sell Account Game</h4>
-                        <div class="price">500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Gạch Card</h4>
-                        <div class="price">500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Bio</h4>
-                        <div class="price">300.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Bảo Hiểm MMO</h4>
-                        <div class="price">1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Shop TapHoaMMO</h4>
-                        <div class="price">1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Bán Hàng</h4>
-                        <div class="price">500.000đ - 1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool Spam CMT Vào Live Tiktok</h4>
-                        <div class="price">300.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool Upload Video Tiktok</h4>
-                        <div class="price">250.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tools tải Video hàng loạt MXH</h4>
-                        <div class="price">300.000đ</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AUTO & TOOL AUTOMATION -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-robot"></i> AUTO & TOOL AUTOMATION</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Auto Lọc Friend</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Auto Add Friend</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Auto Tương Tác Friend</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Auto Marketing Profile</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool Social Media Automation</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool Cải Thiện Tương Tác</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- THIẾT KẾ & PHẦN MỀM -->
-            <div class="service-category scroll-reveal">
-                <h3><i class="fas fa-laptop-code"></i> DỊCH VỤ THIẾT KẾ & PHẦN MỀM</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Thiết kế Website</h4>
-                        <div class="price">Thương lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lập Trình Tools, Phần Mềm</h4>
-                        <div class="price">Thương lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Thiết kế Landing Page</h4>
-                        <div class="price">1.000.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Setup Anti DDoS Website</h4>
-                        <div class="price">Thương lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Traffic</h4>
-                        <div class="price">Thương lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Setup Hệ Thống Tương Tác Real</h4>
-                        <div class="price">1.500.000đ</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Cải Thiện Tương Tác MXH</h4>
-                        <div class="price">Thương Lượng</div>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Kịch Bản Tương Tác</h4>
-                        <div class="price">500.000đ</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 4rem;">
-            <a href="https://zalo.me/0345161185" class="btn-primary">NHẮN ZALO NGAY</a>
-            <a href="https://t.me/hmctricker" class="btn-secondary" style="margin-left: 1rem;">TELEGRAM</a>
-        </div>
-    </section>
-
-    <!-- Process Timeline -->
-    <section class="scroll-reveal">
-        <div class="section-header">
-            <h2>QUY TRÌNH LÀM VIỆC</h2>
-            <p>4 bước đơn giản để bắt đầu sử dụng dịch vụ của chúng tôi</p>
-        </div>
-
-        <div class="process-timeline">
-            <div class="process-step scroll-reveal">
-                <div class="process-content">
-                    <h3>Liên Hệ</h3>
-                    <p>Nhắn tin cho chúng tôi qua Zalo hoặc Telegram để tư vấn về dịch vụ phù hợp</p>
-                </div>
-                <div class="process-number">1</div>
-            </div>
-
-            <div class="process-step scroll-reveal">
-                <div class="process-content">
-                    <h3>Tư Vấn</h3>
-                    <p>Đội ngũ chuyên viên sẽ tư vấn chi tiết về dịch vụ, giá cả và thời gian hoàn thành</p>
-                </div>
-                <div class="process-number">2</div>
-            </div>
-
-            <div class="process-step scroll-reveal">
-                <div class="process-content">
-                    <h3>Thanh Toán</h3>
-                    <p>Thanh toán an toàn qua các hình thức phổ biến, nhận xác nhận ngay lập tức</p>
-                </div>
-                <div class="process-number">3</div>
-            </div>
-
-            <div class="process-step scroll-reveal">
-                <div class="process-content">
-                    <h3>Hoàn Thành</h3>
-                    <p>Nhận kết quả nhanh chóng, hỗ trợ 24/7 nếu có vấn đề phát sinh</p>
-                </div>
-                <div class="process-number">4</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Courses Section -->
-    <section id="courses" class="scroll-reveal">
-        <div class="section-header">
-            <h2>KHÓA HỌC CHUYÊN SÂU</h2>
-            <p>Nâng cao kiến thức với các khóa học chất lượng từ chuyên gia</p>
-        </div>
-
-        <div class="pricing-grid">
-            <div class="pricing-card scroll-reveal">
-                <div class="pricing-header">
-                    <h3>DV Facebook</h3>
-                    <div class="pricing-price">1.000.000đ<span style="font-size: 1rem;">/Cơ bản</span></div>
-                    <div class="pricing-price">3.000.000đ<span style="font-size: 1rem;">/Nâng cao</span></div>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Toàn bộ kiến thức dịch vụ</li>
-                    <li><i class="fas fa-check"></i> Cách vận hành hiệu quả</li>
-                    <li><i class="fas fa-check"></i> Tool hỗ trợ miễn phí</li>
-                    <li><i class="fas fa-check"></i> Dạy kèm 1:1 trên Google Meet</li>
-                    <li><i class="fas fa-check"></i> Cung cấp tài nguyên đầy đủ</li>
-                    <li><i class="fas fa-check"></i> Thời gian: 5-9 ngày</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn-primary" style="width: 100%;">Đăng ký ngay</a>
-            </div>
-
-            <div class="pricing-card scroll-reveal">
-                <div class="pricing-header">
-                    <h3>DV TikTok</h3>
-                    <div class="pricing-price">2.000.000đ<span style="font-size: 1rem;">/Cơ bản</span></div>
-                    <div class="pricing-price">4.000.000đ<span style="font-size: 1rem;">/Nâng cao</span></div>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Kiến thức dịch vụ TikTok</li>
-                    <li><i class="fas fa-check"></i> Cách vận hành hệ thống</li>
-                    <li><i class="fas fa-check"></i> Cải thiện tương tác</li>
-                    <li><i class="fas fa-check"></i> Hỗ trợ setup</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn-primary" style="width: 100%;">Đăng ký ngay</a>
-            </div>
-
-            <div class="pricing-card scroll-reveal">
-                <div class="pricing-header">
-                    <h3>Ads Facebook</h3>
-                    <div class="pricing-price">1.000.000đ<span style="font-size: 1rem;">/Cơ bản</span></div>
-                    <div class="pricing-price">2.000.000đ<span style="font-size: 1rem;">/Nâng cao</span></div>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Chiến lược quảng cáo</li>
-                    <li><i class="fas fa-check"></i> Tối ưu ngân sách</li>
-                    <li><i class="fas fa-check"></i> Cách tạo content hiệu quả</li>
-                    <li><i class="fas fa-check"></i> Group hỗ trợ riêng</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn-primary" style="width: 100%;">Đăng ký ngay</a>
-            </div>
-
-            <div class="pricing-card scroll-reveal">
-                <div class="pricing-header">
-                    <h3>Ads TikTok</h3>
-                    <div class="pricing-price">1.500.000đ<span style="font-size: 1rem;">/Cơ bản</span></div>
-                    <div class="pricing-price">2.000.000đ<span style="font-size: 1rem;">/Nâng cao</span></div>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Chiến lược quảng cáo TikTok</li>
-                    <li><i class="fas fa-check"></i> Cách tạo video viral</li>
-                    <li><i class="fas fa-check"></i> Tối ưu chi phí</li>
-                    <li><i class="fas fa-check"></i> Hỗ trợ live stream</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn-primary" style="width: 100%;">Đăng ký ngay</a>
-            </div>
-
-            <div class="pricing-card scroll-reveal">
-                <div class="pricing-header">
-                    <h3>Thiết Kế Landing Page</h3>
-                    <div class="pricing-price">1.500.000đ</div>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Không cần kiến thức về code</li>
-                    <li><i class="fas fa-check"></i> Dạy bài bản từ A-Z</li>
-                    <li><i class="fas fa-check"></i> Hỗ trợ trọn đời</li>
-                    <li><i class="fas fa-check"></i> Hỗ trợ 1:1 trên Google Meet</li>
-                    <li><i class="fas fa-check"></i> Thời gian học: 4 ngày</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn-primary" style="width: 100%;">Đăng ký ngay</a>
-            </div>
-
-            <div class="pricing-card featured scroll-reveal">
-                <div class="pricing-header">
-                    <h3>Full Khóa Học DVMXH</h3>
-                    <div class="pricing-price">5.000.000đ</div>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> TẤT CẢ khóa học về DV MXH & Ads</li>
-                    <li><i class="fas fa-check"></i> Giảm giá 40% so với mua lẻ</li>
-                    <li><i class="fas fa-check"></i> Hỗ trợ trọn đời</li>
-                    <li><i class="fas fa-check"></i> Group VIP riêng</li>
-                    <li><i class="fas fa-check"></i> Cập nhật miễn phí vĩnh viễn</li>
-                    <li><i class="fas fa-check"></i> Ưu tiên hỗ trợ 1:1 trên Google Meet</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn-primary" style="width: 100%;">Đăng ký ngay</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="scroll-reveal">
-        <div class="section-header">
-            <h2>Lợi Ích Khi Làm Việc Với Chúng Tôi</h2>
-            <p>Lý do hàng ngàn khách hàng đã tin tưởng và lựa chọn dịch vụ của chúng tôi</p>
-        </div>
-
+    <!-- Features -->
+    <section class="features-section">
+        <h2>Vì Sao Chọn Chúng Tôi?</h2>
         <div class="features-grid">
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>Tốc độ nhanh chóng</h3>
-                <p>Xử lý yêu cầu 24/7, hoàn thành nhanh chóng chỉ từ 5-30 phút cho các dịch vụ cơ bản</p>
-            </div>
-
-            <div class="feature-card scroll-reveal">
+            <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <h3>Bảo mật tuyệt đối</h3>
-                <p>Cam kết không lưu giữ thông tin khách hàng, bảo mật toàn diện mọi giao dịch</p>
+                <h3>Bảo Mật Tuyệt Đối</h3>
+                <p>Cam kết không lưu giữ thông tin khách hàng. Mọi giao dịch được mã hóa và bảo mật hoàn toàn.</p>
             </div>
 
-            <div class="feature-card scroll-reveal">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Xử Lý Nhanh 24/7</h3>
+                <p>Hoàn thành dịch vụ cơ bản trong 5-30 phút. Làm việc 24/7 không ngừng nghỉ.</p>
+            </div>
+
+            <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-headset"></i>
                 </div>
-                <h3>Hỗ trợ 24/7</h3>
-                <p>Đội ngũ chuyên viên luôn sẵn sàng hỗ trợ mọi vấn đề khách hàng gặp phải</p>
+                <h3>Hỗ Trợ Liên Tục</h3>
+                <p>Đội ngũ chuyên viên luôn sẵn sàng hỗ trợ bạn qua Zalo, Telegram mọi lúc mọi nơi.</p>
             </div>
 
-            <div class="feature-card scroll-reveal">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Chất Lượng Cao</h3>
+                <p>Đảm bảo chất lượng dịch vụ theo tiêu chuẩn cao nhất với chính sách bảo hành rõ ràng.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>10,000+ Khách Hàng</h3>
+                <p>Được hơn 10,000 khách hàng tin tưởng và đánh giá tích cực trên toàn nền tảng.</p>
+            </div>
+
+            <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-tags"></i>
                 </div>
-                <h3>Giá cả cạnh tranh</h3>
-                <p>Giá dịch vụ tốt nhất thị trường với chất lượng đảm bảo theo tiêu chuẩn cao</p>
+                <h3>Giá Cạnh Tranh</h3>
+                <p>Mức giá tốt nhất thị trường với chất lượng dịch vụ được đảm bảo.</p>
             </div>
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section class="scroll-reveal">
-        <div class="section-header">
-            <h2>Về Chúng Tôi</h2>
-            <p>Đội ngũ chuyên gia với hơn 5 năm kinh nghiệm trong lĩnh vực Digital Marketing và Mạng xã hội</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card scroll-reveal" style="grid-column: 1 / -1;">
-                <h3>Tại sao chọn Chiến Tricker?</h3>
-                <p>Chúng tôi không chỉ là nhà cung cấp dịch vụ, mà còn là đối tác chiến lược giúp bạn đạt được mục tiêu kinh doanh trên không gian số.</p>
-                <p>Với đội ngũ chuyên gia giàu kinh nghiệm, chúng tôi tự hào mang đến các giải pháp toàn diện từ tư vấn, triển khai đến đo lường hiệu quả chiến dịch.</p>
-                <p>Hơn 10,000 khách hàng đã tin tưởng sử dụng dịch vụ và hài lòng với kết quả đạt được. Chúng tôi cam kết mang lại giá trị thực sự cho mọi đồng vốn bạn đầu tư.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="scroll-reveal">
-        <div class="section-header">
-            <h2>Câu Hỏi Thường Gặp</h2>
-            <p>Giải đáp những thắc mắc phổ biến về dịch vụ của chúng tôi</p>
-        </div>
-
-        <div class="faq-container">
-            <div class="faq-item scroll-reveal">
-                <div class="faq-question">
-                    <h4>Thời gian xử lý dịch vụ mất bao lâu?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Thời gian xử lý phụ thuộc vào từng loại dịch vụ. Các dịch vụ cơ bản thường hoàn thành trong 5-30 phút. Dịch vụ phức tạp hơn như unlock tài khoản hoặc verify có thể mất từ 1-7 ngày làm việc.</p>
-                </div>
-            </div>
-
-            <div class="faq-item scroll-reveal">
-                <div class="faq-question">
-                    <h4>Thanh toán như thế nào?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Chúng tôi hỗ trợ nhiều hình thức thanh toán: chuyển khoản ngân hàng, ví điện tử (Momo, ZaloPay), thẻ cào. Sau khi thanh toán, bạn sẽ nhận được xác nhận và chúng tôi bắt đầu xử lý ngay.</p>
-                </div>
-            </div>
-
-            <div class="faq-item scroll-reveal">
-                <div class="faq-question">
-                    <h4>Có bảo hành dịch vụ không?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Có. Tất cả dịch vụ của chúng tôi đều có chính sách bảo hành rõ ràng. Thời gian bảo hành tùy thuộc vào từng gói dịch vụ. Nếu có vấn đề phát sinh trong thời gian bảo hành, chúng tôi sẽ xử lý miễn phí.</p>
-                </div>
-            </div>
-
-            <div class="faq-item scroll-reveal">
-                <div class="faq-question">
-                    <h4>Dịch vụ có an toàn không?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Hoàn toàn an toàn. Chúng tôi sử dụng các phương pháp hợp lệ và tuân thủ quy định của nền tảng. Thông tin của bạn được mã hóa và bảo mật tuyệt đối, không chia sẻ cho bên thứ ba.</p>
-                </div>
-            </div>
-
-            <div class="faq-item scroll-reveal">
-                <div class="faq-question">
-                    <h4>Tôi có được hỗ trợ sau khi mua dịch vụ?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Tất nhiên! Đội ngũ hỗ trợ 24/7 luôn sẵn sàng giúp đỡ bạn qua Zalo, Telegram hoặc Email. Chúng tôi cam kết đồng hành cùng bạn trong suốt quá trình sử dụng dịch vụ.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="scroll-reveal">
-        <div class="section-header">
-            <h2>MỌI NGƯỜI NÓI GÌ VỀ Chiến Tricker</h2>
-            <p>Hãy lắng nghe những khách hàng hài lòng của chúng tôi chia sẻ về trải nghiệm của họ</p>
-        </div>
-
-        <div class="testimonials-slider">
-            <div class="testimonials-track">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="http://static.photos/people/200x200/1" alt="Minh Trần" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Minh Trần</h4>
-                            <p>CEO tại NovaMedia</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Chúng tôi đã thử nhiều nền tảng nhưng chưa thấy dịch vụ nào mang lại hiệu quả lan toả thương hiệu tốt như thế này. Tương tác tăng rõ rệt, chi phí hợp lý, và hỗ trợ cực kỳ tận tâm."</p>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="http://static.photos/people/200x200/2" alt="Nguyễn Hương Ly" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Nguyễn Hương Ly</h4>
-                            <p>Marketer in TechNext</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Dịch vụ giúp chúng tôi duy trì sự hiện diện ổn định trên mạng xã hội mà không cần tốn quá nhiều thời gian quản lý. Báo cáo rõ ràng, dễ theo dõi, đội ngũ chuyên nghiệp."</p>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="http://static.photos/people/200x200/3" alt="Trung Đức" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Trung Đức</h4>
-                            <p>CEO MyCloset</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Fanpage được chăm chút từng ngày, bài viết sáng tạo, nhiều lượt chia sẻ hơn trước. Doanh số từ kênh mạng xã hội đã tăng 40% chỉ sau 2 tháng!"</p>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="http://static.photos/people/200x200/4" alt="Phương Anh" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Phương Anh</h4>
-                            <p>Influencer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Dịch vụ tăng tương tác rất tự nhiên, không spam. Tài khoản của mình phát triển ổn định và an toàn. Team support nhiệt tình, giải đáp nhanh chóng!"</p>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="http://static.photos/people/200x200/5" alt="Hoàng Nam" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Hoàng Nam</h4>
-                            <p>Digital Marketer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Khóa học Facebook Ads rất chi tiết và thực tế. Sau khóa học tôi tự tin chạy ads cho khách hàng và đạt ROI cao. Giá trị nhận được gấp nhiều lần số tiền bỏ ra!"</p>
-                </div>
-            </div>
-
-            <div class="slider-controls">
-                <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section scroll-reveal">
-        <h2>SẴN SÀNG THAY ĐỔI TRẢI NGHIỆM CỦA BẠN?</h2>
-        <p>Tham gia cùng hàng ngàn người dùng hài lòng và trải nghiệm tương lai của mạng xã hội ngay hôm nay.</p>
-        <a href="https://zalo.me/0345161185" class="btn-primary">BẮT ĐẦU NGAY</a>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer / Contact -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Chiến Tricker</h3>
-                <p>Khám phá các khóa học chuyên sâu giúp bạn có được nhiều kiến thức bổ ích về mạng xã hội, kiếm tiền online và tiếp thị số. Từ các TUT Trick khai thác, bảo mật đến chiến lược quảng cáo bán hàng hiệu quả.</p>
-                <div class="social-links" style="margin-top: 1.5rem;">
+                <p>Dịch vụ MXH chuyên nghiệp, đào tạo chất lượng cao. Chúng tôi cam kết mang đến giá trị thực sự cho mọi đồng vốn bạn đầu tư.</p>
+                <div class="social-links">
                     <a href="https://zalo.me/0345161185"><i class="fab fa-facebook"></i></a>
                     <a href="https://t.me/hmctricker"><i class="fab fa-telegram"></i></a>
-                    <a href="/cdn-cgi/l/email-protection#e8808789868f858186808b80818d869c9a818b838d9aa88f85898184c68b8785"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:hoangminhchientricker@gmail.com"><i class="fas fa-envelope"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
 
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h3>Dịch Vụ Nổi Bật</h3>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#courses">Courses</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><i class="fas fa-check"></i> Dame Account MXH</li>
+                    <li><i class="fas fa-check"></i> Unlock & Kháng Nghị</li>
+                    <li><i class="fas fa-check"></i> Tick Xanh Facebook/Instagram</li>
+                    <li><i class="fas fa-check"></i> Tăng Tương Tác</li>
+                    <li><i class="fas fa-check"></i> Chạy Quảng Cáo</li>
+                    <li><i class="fas fa-check"></i> Khóa Học Chuyên Sâu</li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h3>Support</h3>
+                <h3>Liên Hệ</h3>
                 <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Liên Hệ Với Chúng Tôi</h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e58d8a848b82888c8b8d868d8c808b91978c868e8097a58288848c89cb868a88">[email&#160;protected]</a></li>
+                    <li><i class="fas fa-envelope"></i> hoangminhchientricker@gmail.com</li>
                     <li><i class="fas fa-phone"></i> 0345161185</li>
                     <li><i class="fab fa-telegram"></i> @hmctricker</li>
-                    <li><i class="fab fa-facebook"></i> @hmctricker</li>
+                    <li><i class="fab fa-facebook"></i> Chiến Tricker</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Giờ Làm Việc</h3>
+                <ul>
+                    <li><i class="fas fa-clock"></i> Thứ 2 - Chủ Nhật</li>
+                    <li><i class="fas fa-clock"></i> 24/7 - Không Ngừng Nghỉ</li>
+                    <li><i class="fas fa-headset"></i> Hỗ Trợ Tức Thì</li>
+                    <li><i class="fas fa-shield-alt"></i> Bảo Mật Tuyệt Đối</li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
             <p>&copy; 2019 HOANGMINHCHIEN.XYZ. All rights reserved.</p>
-            <div>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookies</a>
-            </div>
         </div>
     </footer>
 
-    <!-- Floating Action Buttons -->
+    <!-- Floating Buttons -->
     <div class="floating-buttons">
-        <a href="https://zalo.me/0345161185" class="float-btn zalo-btn">
+        <a href="https://zalo.me/0345161185" class="float-btn zalo-btn" title="Nhắn Zalo">
             <i class="fas fa-comment-dots"></i>
         </a>
-        <a href="https://t.me/hmctricker" class="float-btn whatsapp-btn">
+        <a href="https://t.me/hmctricker" class="float-btn telegram-btn" title="Nhắn Telegram">
             <i class="fab fa-telegram"></i>
         </a>
-        <button class="float-btn back-to-top">
+        <button class="float-btn back-to-top" title="Về đầu trang">
             <i class="fas fa-arrow-up"></i>
         </button>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Loading Screen - Disabled
-        window.addEventListener('load', () => {
-            // Enable scroll animations after page loads
-            setTimeout(() => {
-                document.querySelectorAll('.scroll-reveal').forEach(el => {
-                    el.classList.add('animated');
-                });
-            }, 100);
+    <script>
+        // Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
         });
 
-        // Scroll Progress Bar
+        sidebarOverlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        // Service Category Toggle
+        document.querySelectorAll('.service-category-menu h3').forEach(header => {
+            header.addEventListener('click', () => {
+                const parent = header.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Close sidebar when clicking on service link
+        document.querySelectorAll('.service-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        });
+
+        // Scroll Progress
         window.addEventListener('scroll', () => {
             const scrollProgress = document.querySelector('.scroll-progress');
             const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
@@ -2522,85 +1090,6 @@
             }
         });
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const nav = document.querySelector('nav');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 1200) {
-                    nav.classList.remove('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-        });
-
-        // Dark Mode Toggle
-        const darkModeToggle = document.querySelector('.dark-mode-toggle');
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const icon = darkModeToggle.querySelector('i');
-            icon.classList.toggle('fa-moon');
-            icon.classList.toggle('fa-sun');
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#' || !href) return;
-                
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 20;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (window.innerWidth <= 1200) {
-                        nav.classList.remove('active');
-                        const icon = mobileMenuBtn.querySelector('i');
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            });
-        });
-
-        // Scroll Reveal Animation
-        const observerOptions = {
-            threshold: 0.05,
-            rootMargin: '0px 0px -20px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        // Add scroll reveal to elements that have the animated class
-        setTimeout(() => {
-            document.querySelectorAll('.scroll-reveal.animated').forEach(el => observer.observe(el));
-        }, 200);
-
         // Counter Animation
         const counters = document.querySelectorAll('.stat-number');
         const speed = 200;
@@ -2610,7 +1099,7 @@
                 const target = +counter.getAttribute('data-target');
                 if (!target) return;
                 
-                const count = +counter.innerText.replace(/[^0-9.]/g, '');
+                const count = +counter.innerText;
                 const inc = target / speed;
 
                 if (count < target) {
@@ -2621,68 +1110,19 @@
                 }
             };
 
-            const counterObserver = new IntersectionObserver((entries) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         updateCount();
-                        counterObserver.unobserve(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
-
-            counterObserver.observe(counter.closest('.stat-item'));
-        });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                const isActive = item.classList.contains('active');
-                
-                document.querySelectorAll('.faq-item').forEach(faq => {
-                    faq.classList.remove('active');
-                });
-                
-                if (!isActive) {
-                    item.classList.add('active');
-                }
             });
+
+            observer.observe(counter.closest('.stat-item'));
         });
 
-        // Testimonials Slider
-        const track = document.querySelector('.testimonials-track');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-        let currentIndex = 0;
-        const cardWidth = 370; // 350px + 20px gap
-
-        nextBtn.addEventListener('click', () => {
-            const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / cardWidth);
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-            }
-        });
-
-        // Auto slide
-        setInterval(() => {
-            const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / cardWidth);
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-            } else {
-                currentIndex = 0;
-            }
-            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-        }, 5000);
-
-        // Back to Top Button
+        // Back to Top
         const backToTop = document.querySelector('.back-to-top');
         
         window.addEventListener('scroll', () => {
@@ -2700,5 +1140,25 @@
             });
         });
 
-        // Parallax Effect
-        window.addEventListener('sc
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || !href) return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerHeight = 80;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
