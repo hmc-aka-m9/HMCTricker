@@ -418,6 +418,8 @@
             padding: 6rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .section-header {
@@ -512,6 +514,7 @@
         .services-container {
             display: grid;
             gap: 3rem;
+            margin-top: 2rem;
         }
 
         .service-category {
@@ -519,6 +522,8 @@
             border-radius: 20px;
             padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
         }
 
         .service-category h3 {
@@ -530,10 +535,25 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .service-category h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 2.5rem 0 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-category h4:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
         .service-items {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .service-item {
@@ -1012,13 +1032,21 @@
         /* Scroll Animations */
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(30px);
             transition: all 0.8s ease;
         }
 
         .scroll-reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Ensure content is visible if JS fails */
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-reveal {
+                opacity: 1;
+                transform: none;
+            }
         }
 
         /* Responsive */
@@ -1437,7 +1465,7 @@
             <div class="service-category scroll-reveal">
                 <h3><i class="fas fa-heart"></i> DỊCH VỤ TĂNG TƯƠNG TÁC</h3>
                 
-                <h4 style="color: var(--primary); margin: 2rem 0 1rem;">Facebook</h4>
+                <h4 style="color: var(--primary); margin: 2.5rem 0 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.3rem;">Facebook</h4>
                 <div class="service-items">
                     <div class="service-item">
                         <h4>Tăng Cảm Xúc</h4>
@@ -1465,7 +1493,7 @@
                     </div>
                 </div>
 
-                <h4 style="color: var(--primary); margin: 2rem 0 1rem;">TikTok</h4>
+                <h4 style="color: var(--primary); margin: 2.5rem 0 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.3rem;">TikTok</h4>
                 <div class="service-items">
                     <div class="service-item">
                         <h4>Tăng Tim</h4>
@@ -1485,7 +1513,7 @@
                     </div>
                 </div>
 
-                <h4 style="color: var(--primary); margin: 2rem 0 1rem;">Instagram</h4>
+                <h4 style="color: var(--primary); margin: 2.5rem 0 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.3rem;">Instagram</h4>
                 <div class="service-items">
                     <div class="service-item">
                         <h4>Tăng Tim</h4>
@@ -1505,7 +1533,7 @@
                     </div>
                 </div>
 
-                <h4 style="color: var(--primary); margin: 2rem 0 1rem;">Khác</h4>
+                <h4 style="color: var(--primary); margin: 2.5rem 0 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.3rem;">Khác</h4>
                 <div class="service-items">
                     <div class="service-item">
                         <h4>Tăng Follow Shopee</h4>
@@ -2166,7 +2194,7 @@
                 <div class="social-links" style="margin-top: 1.5rem;">
                     <a href="https://zalo.me/0345161185"><i class="fab fa-facebook"></i></a>
                     <a href="https://t.me/hmctricker"><i class="fab fa-telegram"></i></a>
-                    <a href="mailto:hoangminhchientricker@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="/cdn-cgi/l/email-protection#e8808789868f858186808b80818d869c9a818b838d9aa88f85898184c68b8785"><i class="fas fa-envelope"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
@@ -2194,7 +2222,7 @@
             <div class="footer-section">
                 <h3>Liên Hệ Với Chúng Tôi</h3>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> hoangminhchientricker@gmail.com</li>
+                    <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e58d8a848b82888c8b8d868d8c808b91978c868e8097a58288848c89cb868a88">[email&#160;protected]</a></li>
                     <li><i class="fas fa-phone"></i> 0345161185</li>
                     <li><i class="fab fa-telegram"></i> @hmctricker</li>
                     <li><i class="fab fa-facebook"></i> @hmctricker</li>
@@ -2225,11 +2253,20 @@
         </button>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Loading Screen
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.querySelector('.loading-screen').classList.add('hide');
+                // Fallback: make all content visible after 2 seconds
+                setTimeout(() => {
+                    document.querySelectorAll('.scroll-reveal').forEach(el => {
+                        if (!el.classList.contains('active')) {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, 2000);
             }, 1000);
         });
 
@@ -2287,8 +2324,8 @@
 
         // Scroll Reveal Animation
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.05,
+            rootMargin: '0px 0px -20px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -2401,13 +2438,4 @@
         });
 
         // Parallax Effect
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero::before');
-            if (parallax) {
-                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-    </script>
-</body>
-</html>
+        window.addEventListener('sc
