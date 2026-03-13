@@ -1,1916 +1,627 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOANGMINHCHIEN.XYZ - DỊCH VỤ MẠNG XÃ HỘI </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoàng Minh Chiến Tricker – Dịch Vụ Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-    :root {
-        /* Cyberpunk Color Palette */
-        --deep-black: #0a0a0a;
-        --carbon-black: #121212;
-        --dark-gray: #1a1a1a;
-        --matrix-green: #00FF41;
-        --cyber-cyan: #00F3FF;
-        --neon-pink: #FF006E;
-        --neon-purple: #8B00FF;
-        --warning-orange: #FF9F1C;
-        
-        /* Opacity variations */
-        --green-glow: rgba(0, 255, 65, 0.5);
-        --cyan-glow: rgba(0, 243, 255, 0.5);
-        --glass-bg: rgba(18, 18, 18, 0.6);
-        --glass-border: rgba(0, 255, 65, 0.2);
-        
-        /* Spacing */
-        --spacing-xs: 0.5rem;
-        --spacing-sm: 1rem;
-        --spacing-md: 2rem;
-        --spacing-lg: 4rem;
-        --spacing-xl: 6rem;
-        
-        /* Typography */
-        --font-mono: 'JetBrains Mono', 'Courier New', monospace;
-    }
-    
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    body {
-        font-family: var(--font-mono);
-        background: var(--deep-black);
-        color: var(--matrix-green);
-        overflow-x: hidden;
-        line-height: 1.6;
-        position: relative;
-    }
-    
-    /* Matrix Rain Background */
-    #matrix-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        opacity: 0.15;
-        pointer-events: none;
-    }
-    
-    /* Grid Lines Background */
-    .grid-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-            linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
-        background-size: 50px 50px;
-        z-index: 1;
-        pointer-events: none;
-    }
-    
-    /* Main Container */
-    .container {
-        position: relative;
-        z-index: 2;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 var(--spacing-md);
-    }
-    
-    /* Header & Navigation */
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border-bottom: 2px solid var(--glass-border);
-        box-shadow: 0 0 30px var(--green-glow);
-    }
-    
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: var(--spacing-sm) var(--spacing-md);
-        flex-wrap: wrap;
-    }
-    
-    .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--matrix-green);
-        text-shadow: 0 0 20px var(--green-glow);
-        letter-spacing: 2px;
-        position: relative;
-    }
-    
-    .logo::before {
-        content: '> ';
-        color: var(--cyber-cyan);
-        animation: blink 1.5s infinite;
-    }
-    
-    .nav-links {
-        display: flex;
-        gap: var(--spacing-md);
-        list-style: none;
-        flex-wrap: wrap;
-    }
-    
-    .nav-links a {
-        color: var(--cyber-cyan);
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        border: 1px solid var(--cyber-cyan);
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .nav-links a::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: var(--cyber-cyan);
-        transition: left 0.3s ease;
-        z-index: -1;
-    }
-    
-    .nav-links a:hover::before {
-        left: 0;
-    }
-    
-    .nav-links a:hover {
-        color: var(--deep-black);
-        box-shadow: 0 0 20px var(--cyan-glow);
-    }
-    
-    /* System Status Bar */
-    .system-status {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 8px;
-        padding: var(--spacing-sm);
-        margin: var(--spacing-md) 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--spacing-sm);
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-    }
-    
-    .status-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        border-left: 2px solid var(--matrix-green);
-    }
-    
-    .status-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--matrix-green);
-        box-shadow: 0 0 10px var(--green-glow);
-        animation: pulse 2s infinite;
-    }
-    
-    .status-dot.warning {
-        background: var(--warning-orange);
-        box-shadow: 0 0 10px rgba(255, 159, 28, 0.5);
-    }
-    
-    /* Hero Section */
-    .hero {
-        padding: var(--spacing-xl) 0;
-        text-align: center;
-        position: relative;
-    }
-    
-    .hero h1 {
-        font-size: clamp(2rem, 5vw, 4rem);
-        color: var(--cyber-cyan);
-        text-shadow: 0 0 30px var(--cyan-glow);
-        margin-bottom: var(--spacing-md);
-        position: relative;
-    }
-    
-    .typing-effect {
-        overflow: hidden;
-        border-right: 3px solid var(--matrix-green);
-        white-space: nowrap;
-        animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        display: inline-block;
-        max-width: 100%;
-    }
-    
-    @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
-    }
-    
-    @keyframes blink-caret {
-        from, to { border-color: transparent; }
-        50% { border-color: var(--matrix-green); }
-    }
-    
-    @keyframes blink {
-        0%, 50%, 100% { opacity: 1; }
-        25%, 75% { opacity: 0.3; }
-    }
-    
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-    }
-    
-    .hero-subtitle {
-        font-size: 1.2rem;
-        color: var(--matrix-green);
-        margin-bottom: var(--spacing-md);
-        opacity: 0.8;
-    }
-    
-    /* Buttons with Glitch Effect */
-    .btn {
-        display: inline-block;
-        padding: 1rem 2.5rem;
-        margin: 0.5rem;
-        background: transparent;
-        color: var(--matrix-green);
-        border: 2px solid var(--matrix-green);
-        text-decoration: none;
-        font-family: var(--font-mono);
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-    
-    .btn::before {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--matrix-green);
-        color: var(--deep-black);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease;
-    }
-    
-    .btn:hover::before {
-        transform: translateY(0);
-    }
-    
-    .btn:hover {
-        box-shadow: 0 0 30px var(--green-glow);
-        animation: glitch 0.3s infinite;
-    }
-    
-    @keyframes glitch {
-        0% { transform: translate(0); }
-        20% { transform: translate(-2px, 2px); }
-        40% { transform: translate(-2px, -2px); }
-        60% { transform: translate(2px, 2px); }
-        80% { transform: translate(2px, -2px); }
-        100% { transform: translate(0); }
-    }
-    
-    .btn-primary {
-        border-color: var(--cyber-cyan);
-        color: var(--cyber-cyan);
-    }
-    
-    .btn-primary::before {
-        background: var(--cyber-cyan);
-    }
-    
-    .btn-primary:hover {
-        box-shadow: 0 0 30px var(--cyan-glow);
-    }
-    
-    /* Section Headers */
-    .section {
-        padding: var(--spacing-lg) 0;
-        position: relative;
-    }
-    
-    .section-header {
-        text-align: center;
-        margin-bottom: var(--spacing-lg);
-    }
-    
-    .section-header h2 {
-        font-size: clamp(1.8rem, 4vw, 3rem);
-        color: var(--cyber-cyan);
-        text-shadow: 0 0 20px var(--cyan-glow);
-        margin-bottom: var(--spacing-sm);
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        position: relative;
-        display: inline-block;
-    }
-    
-    .section-header h2::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
-        box-shadow: 0 0 10px var(--green-glow);
-    }
-    
-    .section-header p {
-        color: var(--matrix-green);
-        opacity: 0.8;
-        font-size: 1rem;
-        max-width: 800px;
-        margin: var(--spacing-sm) auto 0;
-    }
-    
-    /* Feature Cards */
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--spacing-md);
-        margin-top: var(--spacing-md);
-    }
-    
-    .feature-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        padding: var(--spacing-md);
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    .feature-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-            transparent,
-            var(--matrix-green),
-            transparent 30%
-        );
-        animation: rotate 4s linear infinite;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .feature-card::after {
-        content: '';
-        position: absolute;
-        inset: 3px;
-        background: var(--carbon-black);
-        border-radius: 10px;
-        z-index: 1;
-    }
-    
-    .feature-card:hover::before {
-        opacity: 0.5;
-    }
-    
-    .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 40px rgba(0, 255, 65, 0.3);
-    }
-    
-    @keyframes rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-    
-    .feature-content {
-        position: relative;
-        z-index: 2;
-    }
-    
-    .feature-card h3 {
-        color: var(--cyber-cyan);
-        font-size: 1.3rem;
-        margin-bottom: var(--spacing-sm);
-        text-shadow: 0 0 10px var(--cyan-glow);
-    }
-    
-    .feature-card p {
-        color: var(--matrix-green);
-        opacity: 0.9;
-        line-height: 1.6;
-    }
-    
-    /* Service Cards */
-    .services-container {
-        display: grid;
-        gap: var(--spacing-lg);
-    }
-    
-    .service-category {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        padding: var(--spacing-md);
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-    }
-    
-    .service-category h3 {
-        color: var(--matrix-green);
-        font-size: 1.8rem;
-        margin-bottom: var(--spacing-md);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        border-bottom: 2px solid var(--matrix-green);
-        padding-bottom: var(--spacing-sm);
-        text-shadow: 0 0 15px var(--green-glow);
-    }
-    
-    .service-items {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: var(--spacing-sm);
-    }
-    
-    .service-item {
-        background: rgba(0, 255, 65, 0.05);
-        border: 1px solid rgba(0, 255, 65, 0.2);
-        border-left: 3px solid var(--matrix-green);
-        padding: var(--spacing-sm);
-        border-radius: 6px;
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-    
-    .service-item:hover {
-        background: rgba(0, 255, 65, 0.1);
-        border-left-width: 5px;
-        transform: translateX(5px);
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
-    }
-    
-    .service-item h4 {
-        color: var(--cyber-cyan);
-        font-size: 1rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .service-item .price {
-        color: var(--matrix-green);
-        font-weight: 600;
-        font-size: 0.95rem;
-    }
-    
-    /* Live Data Feed */
-    .data-feed {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        padding: var(--spacing-md);
-        margin: var(--spacing-md) 0;
-        max-height: 400px;
-        overflow-y: auto;
-        font-size: 0.9rem;
-    }
-    
-    .data-feed::-webkit-scrollbar {
-        width: 8px;
-    }
-    
-    .data-feed::-webkit-scrollbar-track {
-        background: var(--dark-gray);
-    }
-    
-    .data-feed::-webkit-scrollbar-thumb {
-        background: var(--matrix-green);
-        border-radius: 4px;
-    }
-    
-    .feed-item {
-        padding: 0.5rem;
-        margin-bottom: 0.5rem;
-        border-left: 2px solid var(--cyber-cyan);
-        background: rgba(0, 243, 255, 0.05);
-        border-radius: 4px;
-        animation: slideIn 0.5s ease;
-    }
-    
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
-    .feed-time {
-        color: var(--warning-orange);
-        font-size: 0.8rem;
-    }
-    
-    .feed-message {
-        color: var(--matrix-green);
-    }
-    
-    /* Course Cards */
-    .courses-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: var(--spacing-md);
-    }
-    
-    .course-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        padding: var(--spacing-md);
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    .course-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 15px 50px rgba(0, 243, 255, 0.3);
-        border-color: var(--cyber-cyan);
-    }
-    
-    .course-header {
-        border-bottom: 2px solid var(--cyber-cyan);
-        padding-bottom: var(--spacing-sm);
-        margin-bottom: var(--spacing-sm);
-    }
-    
-    .course-card h3 {
-        color: var(--cyber-cyan);
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .course-price {
-        font-size: 2rem;
-        color: var(--matrix-green);
-        font-weight: 700;
-        text-shadow: 0 0 15px var(--green-glow);
-    }
-    
-    .course-price small {
-        font-size: 1rem;
-        opacity: 0.7;
-    }
-    
-    .course-features {
-        list-style: none;
-        margin: var(--spacing-sm) 0;
-    }
-    
-    .course-features li {
-        padding: 0.5rem 0;
-        color: var(--matrix-green);
-        border-bottom: 1px solid rgba(0, 255, 65, 0.1);
-    }
-    
-    .course-features li::before {
-        content: '▸ ';
-        color: var(--cyber-cyan);
-        font-weight: bold;
-    }
-    
-    /* Testimonials */
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--spacing-md);
-    }
-    
-    .testimonial-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        padding: var(--spacing-md);
-        position: relative;
-    }
-    
-    .testimonial-card::before {
-        content: '"';
-        position: absolute;
-        top: -20px;
-        left: 20px;
-        font-size: 5rem;
-        color: var(--cyber-cyan);
-        opacity: 0.3;
-        font-family: serif;
-    }
-    
-    .testimonial-author {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-sm);
-        margin-bottom: var(--spacing-sm);
-    }
-    
-    .author-avatar {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        border: 2px solid var(--matrix-green);
-        box-shadow: 0 0 15px var(--green-glow);
-    }
-    
-    .author-info h4 {
-        color: var(--cyber-cyan);
-        margin-bottom: 0.2rem;
-    }
-    
-    .author-info p {
-        color: var(--matrix-green);
-        font-size: 0.9rem;
-        opacity: 0.8;
-    }
-    
-    .testimonial-text {
-        color: var(--matrix-green);
-        line-height: 1.8;
-        font-style: italic;
-    }
-    
-    /* Stats Section */
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--spacing-md);
-        text-align: center;
-    }
-    
-    .stat-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        padding: var(--spacing-md);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .stat-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
-        animation: shimmer 3s infinite;
-    }
-    
-    @keyframes shimmer {
-        0% { left: -100%; }
-        100% { left: 100%; }
-    }
-    
-    .stat-number {
-        font-size: 3rem;
-        color: var(--cyber-cyan);
-        font-weight: 700;
-        text-shadow: 0 0 20px var(--cyan-glow);
-        display: block;
-    }
-    
-    .stat-label {
-        color: var(--matrix-green);
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-    
-    /* Footer */
-    footer {
-        background: var(--carbon-black);
-        border-top: 2px solid var(--glass-border);
-        padding: var(--spacing-lg) 0 var(--spacing-md);
-        margin-top: var(--spacing-xl);
-        box-shadow: 0 -5px 30px rgba(0, 255, 65, 0.1);
-    }
-    
-    .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: var(--spacing-md);
-        margin-bottom: var(--spacing-md);
-    }
-    
-    .footer-section h3 {
-        color: var(--cyber-cyan);
-        margin-bottom: var(--spacing-sm);
-        text-shadow: 0 0 10px var(--cyan-glow);
-    }
-    
-    .footer-section ul {
-        list-style: none;
-    }
-    
-    .footer-section ul li {
-        margin-bottom: 0.5rem;
-    }
-    
-    .footer-section a {
-        color: var(--matrix-green);
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-    
-    .footer-section a:hover {
-        color: var(--cyber-cyan);
-        text-shadow: 0 0 10px var(--cyan-glow);
-        padding-left: 5px;
-    }
-    
-    .footer-bottom {
-        text-align: center;
-        padding-top: var(--spacing-md);
-        border-top: 1px solid var(--glass-border);
-        color: var(--matrix-green);
-        opacity: 0.8;
-    }
-    
-    .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: var(--spacing-md);
-        margin-top: var(--spacing-sm);
-        flex-wrap: wrap;
-    }
-    
-    .footer-links a {
-        color: var(--cyber-cyan);
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-        text-shadow: 0 0 10px var(--cyan-glow);
-    }
-    
-    /* CTA Section */
-    .cta-section {
-        background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 243, 255, 0.1));
-        border: 2px solid var(--matrix-green);
-        border-radius: 12px;
-        padding: var(--spacing-lg);
-        text-align: center;
-        margin: var(--spacing-lg) 0;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .cta-section::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-            transparent,
-            rgba(0, 255, 65, 0.1),
-            transparent 30%
-        );
-        animation: rotate 8s linear infinite;
-    }
-    
-    .cta-content {
-        position: relative;
-        z-index: 1;
-    }
-    
-    .cta-section h2 {
-        font-size: 2.5rem;
-        color: var(--cyber-cyan);
-        margin-bottom: var(--spacing-sm);
-        text-shadow: 0 0 30px var(--cyan-glow);
-    }
-    
-    .cta-section p {
-        font-size: 1.2rem;
-        color: var(--matrix-green);
-        margin-bottom: var(--spacing-md);
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .nav-links {
-            flex-direction: column;
-            width: 100%;
-            gap: 0.5rem;
-        }
-        
-        .system-status {
-            grid-template-columns: 1fr;
-        }
-        
-        .hero h1 {
-            font-size: 2rem;
-        }
-        
-        .section {
-            padding: var(--spacing-md) 0;
-        }
-        
-        .features-grid,
-        .services-container,
-        .courses-grid,
-        .testimonials-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-        }
-    }
-    
-    /* Accessibility */
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-    }
-    
-    /* Loading Animation */
-    .loading {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 3px solid rgba(0, 255, 65, 0.3);
-        border-radius: 50%;
-        border-top-color: var(--matrix-green);
-        animation: spin 1s ease-in-out infinite;
-    }
-    
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-    
-    /* Smooth Scroll */
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111;
+    --surface2: #181818;
+    --gold: #f5c518;
+    --gold2: #e0a800;
+    --red: #e63946;
+    --green: #2ecc71;
+    --text: #f0f0f0;
+    --muted: #888;
+    --border: #2a2a2a;
+  }
 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  header {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,197,24,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(230,57,70,.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(245,197,24,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,197,24,.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(245,197,24,.12);
+    border: 1px solid rgba(245,197,24,.4);
+    color: var(--gold);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    animation: fadeUp .6s ease both;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 110px);
+    letter-spacing: .03em;
+    line-height: .95;
+    animation: fadeUp .7s .1s ease both;
+  }
+
+  h1 span { color: var(--gold); }
+
+  .sub {
+    margin-top: 16px;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 560px;
+    animation: fadeUp .7s .2s ease both;
+  }
+
+  .cta-row {
+    margin-top: 36px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp .7s .3s ease both;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: #000;
+    font-weight: 800;
+    font-size: .95rem;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: .04em;
+    transition: background .2s, transform .15s;
+    border: none; cursor: pointer;
+  }
+  .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: .95rem;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: .04em;
+    border: 1.5px solid rgba(245,197,24,.5);
+    transition: border-color .2s, transform .15s;
+    cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+  /* scroll arrow */
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    animation: pulse 2s infinite;
+  }
+  .scroll-hint svg { width: 22px; opacity: .6; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1;
+    margin-bottom: 48px;
+  }
+
+  /* ── SERVICE GRID ── */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    transition: border-color .25s, transform .2s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s;
+  }
+  .card:hover { border-color: rgba(245,197,24,.35); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+  .card:hover::before { transform: scaleX(1); }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 14px;
+  }
+  .card-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    color: var(--muted);
+    font-size: .88rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .price-tag {
+    display: inline-block;
+    background: rgba(245,197,24,.12);
+    border: 1px solid rgba(245,197,24,.3);
+    color: var(--gold);
+    font-weight: 800;
+    font-size: .95rem;
+    padding: 6px 16px;
+    border-radius: 6px;
+  }
+  .price-tag.red {
+    background: rgba(230,57,70,.12);
+    border-color: rgba(230,57,70,.3);
+    color: var(--red);
+  }
+  .price-tag.green {
+    background: rgba(46,204,113,.12);
+    border-color: rgba(46,204,113,.3);
+    color: var(--green);
+  }
+
+  /* ── SPECIAL CARD (gạch thẻ cào) ── */
+  .card.special {
+    border-color: rgba(46,204,113,.4);
+    background: linear-gradient(135deg, #0f1f16 0%, var(--surface) 100%);
+    grid-column: 1 / -1;
+  }
+  .card.special::before { background: var(--green); }
+  .card.special .card-name { font-size: 1.2rem; }
+  .card.special .badge-hot {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-left: 10px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    animation: blink 1.4s infinite;
+  }
+
+  .gachu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .gachu-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .gachu-item .label { color: var(--muted); font-size: .78rem; }
+  .gachu-item .original { font-weight: 600; font-size: 1rem; }
+  .gachu-item .received { color: var(--green); font-weight: 800; font-size: 1rem; }
+  .gachu-item .fee { color: var(--muted); font-size: .75rem; }
+
+  /* ── COURSES ── */
+  .course-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    transition: border-color .25s, transform .2s;
+  }
+  .course-card:hover { border-color: rgba(245,197,24,.35); transform: translateX(6px); }
+  .course-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: rgba(245,197,24,.2);
+    min-width: 48px;
+    line-height: 1;
+  }
+  .course-info { flex: 1; }
+  .course-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; }
+  .course-desc { color: var(--muted); font-size: .88rem; line-height: 1.6; margin-bottom: 12px; }
+
+  /* ── CUSTOM WORK ── */
+  .custom-box {
+    background: linear-gradient(135deg, #1a1200 0%, var(--surface) 100%);
+    border: 1px solid rgba(245,197,24,.25);
+    border-radius: 14px;
+    padding: 40px 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .custom-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 8px; }
+  .custom-box p { color: var(--muted); max-width: 480px; line-height: 1.7; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 20px;
+    text-align: center;
+  }
+  footer .brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    letter-spacing: .06em;
+  }
+  footer .tagline { color: var(--muted); font-size: .85rem; margin-top: 6px; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 auto; max-width: 1100px; }
+
+  /* ── KEYFRAMES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: .5; } 50% { opacity: 1; }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; } 50% { opacity: .4; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    section { padding: 60px 16px; }
+    .custom-box { padding: 28px 20px; }
+    .custom-box a { width: 100%; text-align: center; }
+  }
+</style>
 </head>
 <body>
-    <!-- Matrix Rain Canvas -->
-    <canvas id="matrix-canvas"></canvas>
 
-```
-<!-- Grid Overlay -->
-<div class="grid-overlay"></div>
-
-<!-- Header -->
+<!-- ══════════ HERO ══════════ -->
 <header>
-    <nav class="container">
-        <div class="logo">HOANGMINHCHIEN.XYZ</div>
-        <ul class="nav-links">
-            <li><a href="#home">TRANG CHỦ</a></li>
-            <li><a href="#services">DỊCH VỤ</a></li>
-            <li><a href="#contact">LIÊN HỆ</a></li>
-        </ul>
-    </nav>
+  <div class="grid-bg"></div>
+  <div class="badge">⚡ Dịch Vụ Digital Uy Tín Số 1</div>
+  <h1>HOÀNG MINH<br><span>CHIẾN TRICKER</span></h1>
+  <p class="sub">Hoàng Đế trong giới Tricker – Hacker | Giải pháp toàn diện về Facebook, AI, Lập trình & Tài chính số</p>
+  <div class="cta-row">
+    <a class="btn-gold" href="#services">Xem Dịch Vụ</a>
+    <a class="btn-outline" href="#contact">Liên Hệ Ngay</a>
+  </div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    cuộn xuống
+  </div>
 </header>
 
-<div class="container">
-    <!-- System Status -->
-    <div class="system-status">
-        <div class="status-item">
-            <span class="status-dot"></span>
-            <span>SYSTEM: <strong>ONLINE</strong></span>
-        </div>
-        <div class="status-item">
-            <span class="status-dot"></span>
-            <span>UPTIME: <strong id="uptime">99.9%</strong></span>
-        </div>
-        <div class="status-item">
-            <span class="status-dot"></span>
-            <span>USERS: <strong id="user-count">5.0K+</strong></span>
-        </div>
-        <div class="status-item">
-            <span class="status-dot warning"></span>
-            <span>LATENCY: <strong id="latency">3ms</strong></span>
-        </div>
-    </div>
-    
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1><span class="typing-effect">DỊCH VỤ MXH 2026</span></h1>
-        <p class="hero-subtitle">
-            Khám phá các khóa học chuyên sâu giúp bạn có được nhiều kiến thức bổ ích về MXH và tiếp thị số. 
-            Từ các TUT Trick khai thác, bảo mật đến chiến lược quảng cáo bán hàng hiệu quả.
-        </p>
-        <div>
-            <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="GET STARTED">GET STARTED</a>
-            <a href="https://zalo.me/0345161185" class="btn" data-text="LEARN MORE">LEARN MORE</a>
-        </div>
-    </section>
-    
-    <!-- Live Data Feed -->
-    <section class="section">
-        <div class="section-header">
-            <h2>LIVE DATA FEED</h2>
-            <p>Real-time system activities and transactions</p>
-        </div>
-        <div class="data-feed" id="live-feed">
-            <!-- Data will be inserted here by JavaScript -->
-        </div>
-    </section>
-    
-    <!-- Features -->
-    <section class="section">
-        <div class="section-header">
-            <h2>VỀ DỊCH VỤ CỦA CHÚNG TÔI</h2>
-            <p>KHÁM PHÁ NHỮNG TÍNH NĂNG SÁNG TẠO NHẤT GIÚP CHÚNG TÔI KHÁC BIỆT SO VỚI ĐỐI THỦ CẠNH TRANH</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-content">
-                    <h3>Đáng Tin Cậy Từ Cộng Đồng</h3>
-                    <p>Hơn 10.000+ khách hàng đã tin tưởng và đánh giá tích cực trên toàn nền tảng.</p>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-content">
-                    <h3>Hiệu Quả Vượt Mong Đợi</h3>
-                    <p>Giúp bạn tiết kiệm thời gian, tối ưu hiệu suất và đạt kết quả rõ rệt chỉ sau vài lần sử dụng.</p>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-content">
-                    <h3>Không Chờ Đợi, Không Rườm Rà</h3>
-                    <p>Quy trình xử lý tinh gọn – bạn yêu cầu, chúng tôi thực hiện ngay.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Services -->
-    <section class="section" id="services">
-        <div class="section-header">
-            <h2>DỊCH VỤ MXH CHIẾN TRICKER</h2>
-            <p>Khám phá các dịch vụ chuyên sâu về mạng xã hội, kiếm tiền online và tiếp thị số</p>
-        </div>
-        
-        <div class="services-container">
-            <!-- DAME ACCOUNT -->
-            <div class="service-category">
-                <h3>▸ DAME ACCOUNT</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Facebook TCN Thường</h4>
-                        <p class="price">300.000đ - 1.500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Facebook Chuyên Nghiệp</h4>
-                        <p class="price">1.000.000đ - 1.700.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Facebook Locked</h4>
-                        <p class="price">500.000đ - 1.700.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Facebook Không AVT</h4>
-                        <p class="price">450.000đ - 1.700.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Fanpage Facebook</h4>
-                        <p class="price">1.000.000đ - 3.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Group Facebook</h4>
-                        <p class="price">2.000.000đ - 8.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản TikTok</h4>
-                        <p class="price">300.000đ - 4.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Video TikTok</h4>
-                        <p class="price">250.000đ - 2.500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Instagram</h4>
-                        <p class="price">500.000đ - 1.500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Youtube</h4>
-                        <p class="price">500.000đ - 5.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Video Youtube</h4>
-                        <p class="price">500.000đ - 5.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dame Tài Khoản Threads</h4>
-                        <p class="price">500.000đ - 2.500.000đ</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- UNLOCK & KHÁNG NGHỊ -->
-            <div class="service-category">
-                <h3>▸ UNLOCK & KHÁNG NGHỊ</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Dạng Két Chính Chủ</h4>
-                        <p class="price">250.000đ - 400.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Dạng Két Ko Chính Chủ</h4>
-                        <p class="price">300.000đ - 550.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Bị Đình Chỉ (282)</h4>
-                        <p class="price">200.000đ - 350.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Bị Treo Link 282</h4>
-                        <p class="price">500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Facebook Vô Hiệu Hoá Vĩnh Viễn (FAQ)</h4>
-                        <p class="price">650.000đ - 7.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Kháng Vi Phạm Facebook</h4>
-                        <p class="price">100.000đ - 500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lấy Lại Facebook Bị Hack</h4>
-                        <p class="price">850.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Verify Bảo Vệ Tài Khoản Facebook</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa TikTok Cấm Vĩnh Viễn</h4>
-                        <p class="price">300.000đ - 1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa TikTok Die Bản Quyền</h4>
-                        <p class="price">300.000đ - 800.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa TikTok Giới Hạn Độ Tuổi</h4>
-                        <p class="price">250.000đ - 600.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Khiếu Nại Video TikTok</h4>
-                        <p class="price">100.000đ - 450.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Bảo Kê Tài Khoản TikTok</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tài Khoản Agency TikTok</h4>
-                        <p class="price">5.500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Mở Khóa Tài Khoản Instagram</h4>
-                        <p class="price">250.000đ - 800.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Kháng Nghị Video Youtube</h4>
-                        <p class="price">200.000đ - 1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Kháng Nghị Bài viết Instagram</h4>
-                        <p class="price">200.000đ - 500.000đ</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- TICK XANH -->
-            <div class="service-category">
-                <h3>▸ DỊCH VỤ TICK XANH</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Facebook KBH</h4>
-                        <p class="price">400.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Facebook BH</h4>
-                        <p class="price">600.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Facebook Chính Chủ KBH</h4>
-                        <p class="price">650.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Facebook Chính Chủ BH</h4>
-                        <p class="price">800.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Instagram BH</h4>
-                        <p class="price">400.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Tick Xanh Profile Instagram Chính Chủ BH</h4>
-                        <p class="price">700.000đ</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- TĂNG TƯƠNG TÁC -->
-            <div class="service-category">
-                <h3>▸ DỊCH VỤ TĂNG TƯƠNG TÁC</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Tăng Cảm Xúc Facebook</h4>
-                        <p class="price">15.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Follow Facebook</h4>
-                        <p class="price">20.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Mắt Live Facebook</h4>
-                        <p class="price">380.000đ / 1000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Đánh Giá Fanpage</h4>
-                        <p class="price">30.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng View Story Facebook</h4>
-                        <p class="price">20.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Tim TikTok</h4>
-                        <p class="price">15.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Follow TikTok</h4>
-                        <p class="price">40.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Mắt Live TikTok</h4>
-                        <p class="price">380.000đ / 1000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng View TikTok</h4>
-                        <p class="price">5.000đ / 1000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Tim Instagram</h4>
-                        <p class="price">25.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Follow Instagram</h4>
-                        <p class="price">35.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Mắt Live Instagram</h4>
-                        <p class="price">380.000đ / 1000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng View Instagram</h4>
-                        <p class="price">10.000đ / 1.000 Tương Tác</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Dịch Vụ Shopee & Google Maps</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- QUẢNG CÁO -->
-            <div class="service-category">
-                <h3>▸ DỊCH VỤ QUẢNG CÁO</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Facebook</h4>
-                        <p class="price">min 500.000đ / 1 Day</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo TikTok</h4>
-                        <p class="price">min 500.000đ / 1 Day</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Instagram</h4>
-                        <p class="price">min 500.000đ / 1 Day</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Google</h4>
-                        <p class="price">min 1.000.000đ / 1 Day</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Threads</h4>
-                        <p class="price">min 700.000đ / 1 Day</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chạy Quảng Cáo Douyin</h4>
-                        <p class="price">min 2.000.000đ / 1 Day</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- GMAIL & EMAIL -->
-            <div class="service-category">
-                <h3>▸ GMAIL & EMAIL SERVICE</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Lấy Lại Gmail Bị Mất/Hack</h4>
-                        <p class="price">500.000đ - 1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Change Gmail</h4>
-                        <p class="price">200.000đ - 1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Unlock Gmail</h4>
-                        <p class="price">500.000đ - 25.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Disable Gmail</h4>
-                        <p class="price">3.000.000đ</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- VIA, CLONE, VPN -->
-            <div class="service-category">
-                <h3>▸ VIA, CLONE, VPN & TÀI NGUYÊN</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Via Tick Chuyên Dame</h4>
-                        <p class="price">450.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Via Meta Up Tick Facebook + Proxy Private</h4>
-                        <p class="price">500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>HMA VPN</h4>
-                        <p class="price">50.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Chiến Tricker-BlackGPT</h4>
-                        <p class="price">50.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Group Zalo Full Member</h4>
-                        <p class="price">400.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Clone/Via Facebook</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool + TUT Auto Dame FB</h4>
-                        <p class="price">100.000đ - 2.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tài Khoản Agency TikTok</h4>
-                        <p class="price">5.000.000đ</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- TUT, SOURCE CODE & TOOL -->
-            <div class="service-category">
-                <h3>▸ TUT, SOURCE CODE & TOOL</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Agency Bảo Kê TikTok</h4>
-                        <p class="price">500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tut + Tool Dame FB</h4>
-                        <p class="price">200.000đ - 1.500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Unlock 282</h4>
-                        <p class="price">300.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Unlock 956</h4>
-                        <p class="price">300.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Lách Vi Phạm MXH</h4>
-                        <p class="price">250.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Lên Tick Xanh FB</h4>
-                        <p class="price">500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>TUT Back Acc</h4>
-                        <p class="price">300.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Tài Nguyên ADS</h4>
-                        <p class="price">1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Sell Account Game</h4>
-                        <p class="price">500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Gạch Card</h4>
-                        <p class="price">500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Bio</h4>
-                        <p class="price">300.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Bảo Hiểm MMO</h4>
-                        <p class="price">1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Shop TapHoaMMO</h4>
-                        <p class="price">1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Build Website Bán Hàng</h4>
-                        <p class="price">500.000đ - 1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool Spam CMT Vào Live Tiktok</h4>
-                        <p class="price">300.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool Upload Video Tiktok</h4>
-                        <p class="price">250.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tools tải Video hàng loạt MXH</h4>
-                        <p class="price">300.000đ</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- AUTO & TOOL AUTOMATION -->
-            <div class="service-category">
-                <h3>▸ AUTO & TOOL AUTOMATION</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Auto Lọc Friend</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Auto Add Friend</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Auto Tương Tác Friend</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Auto Marketing Profile</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool Social Media Automation</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tool Cải Thiện Tương Tác</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- THIẾT KẾ & PHẦN MỀM -->
-            <div class="service-category">
-                <h3>▸ DỊCH VỤ THIẾT KẾ & PHẦN MỀM</h3>
-                <div class="service-items">
-                    <div class="service-item">
-                        <h4>Thiết kế Website</h4>
-                        <p class="price">Thương lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lập Trình Tools, Phần Mềm</h4>
-                        <p class="price">Thương lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Thiết kế Landing Page</h4>
-                        <p class="price">1.000.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Setup Anti DDoS Website</h4>
-                        <p class="price">Thương lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Tăng Traffic</h4>
-                        <p class="price">Thương lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Setup Hệ Thống Tương Tác Real</h4>
-                        <p class="price">1.500.000đ</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Cải Thiện Tương Tác MXH</h4>
-                        <p class="price">Thương Lượng</p>
-                    </div>
-                    <div class="service-item">
-                        <h4>Lên Kịch Bản Tương Tác</h4>
-                        <p class="price">500.000đ</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="NHẮN ZALO NGAY">NHẮN ZALO NGAY</a>
-            <a href="https://t.me/hmctricker" class="btn" data-text="TELEGRAM">TELEGRAM</a>
-        </div>
-    </section>
-    
-    <!-- Courses -->
-    <section class="section">
-        <div class="section-header">
-            <h2>KHÓA HỌC CHUYÊN SÂU</h2>
-            <p>Nâng cao kiến thức với các khóa học chất lượng từ chuyên gia</p>
-        </div>
-        
-        <div class="courses-grid">
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>DV Facebook</h3>
-                    <div class="course-price">
-                        400.000đ <small>- Cơ bản</small><br>
-                        1.500.000đ <small>- Nâng cao</small>
-                    </div>
-                </div>
-                <ul class="course-features">
-                    <li>Toàn bộ kiến thức dịch vụ</li>
-                    <li>Cách vận hành hiệu quả</li>
-                    <li>Tool hỗ trợ miễn phí</li>
-                    <li>Dạy kèm 1:1 trên Google Meet</li>
-                    <li>Cung cấp tài nguyên đầy đủ</li>
-                    <li>Thời gian: 5-9 ngày</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="ĐĂNG KÝ NGAY">ĐĂNG KÝ NGAY</a>
-            </div>
-            
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>DV TikTok</h3>
-                    <div class="course-price">
-                        500.000đ <small>- Cơ bản</small><br>
-                        2.000.00đ <small>- Nâng cao</small>
-                    </div>
-                </div>
-                <ul class="course-features">
-                    <li>Kiến thức dịch vụ TikTok</li>
-                    <li>Cách vận hành hệ thống</li>
-                    <li>Cải thiện tương tác</li>
-                    <li>Hỗ trợ setup</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="ĐĂNG KÝ NGAY">ĐĂNG KÝ NGAY</a>
-            </div>
-            
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>Ads Facebook</h3>
-                    <div class="course-price">
-                        350.000đ <small>- Cơ bản</small><br>
-                        1.000.000đ <small>- Nâng cao</small>
-                    </div>
-                </div>
-                <ul class="course-features">
-                    <li>Chiến lược quảng cáo</li>
-                    <li>Tối ưu ngân sách</li>
-                    <li>Cách tạo content hiệu quả</li>
-                    <li>Group hỗ trợ riêng</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="ĐĂNG KÝ NGAY">ĐĂNG KÝ NGAY</a>
-            </div>
-            
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>Ads TikTok</h3>
-                    <div class="course-price">
-                        400.000đ <small>- Cơ bản</small><br>
-                        1.500.000đ <small>- Nâng cao</small>
-                    </div>
-                </div>
-                <ul class="course-features">
-                    <li>Chiến lược quảng cáo TikTok</li>
-                    <li>Cách tạo video viral</li>
-                    <li>Tối ưu chi phí</li>
-                    <li>Hỗ trợ live stream</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="ĐĂNG KÝ NGAY">ĐĂNG KÝ NGAY</a>
-            </div>
-            
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>Thiết Kế LandingPage</h3>
-                    <div class="course-price">1.500.000đ</div>
-                </div>
-                <ul class="course-features">
-                    <li>Không cần kiến thức về code</li>
-                    <li>Dạy bài bản từ A-Z</li>
-                    <li>Hỗ trợ trọn đời</li>
-                    <li>Hỗ trợ 1:1 trên Google Meet</li>
-                    <li>Thời gian học: 4 ngày</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="ĐĂNG KÝ NGAY">ĐĂNG KÝ NGAY</a>
-            </div>
-            
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>Full Khóa Học DVMXH</h3>
-                    <div class="course-price">3.000.000đ</div>
-                </div>
-                <ul class="course-features">
-                    <li>TẤT CẢ khóa học về DV MXH & Ads</li>
-                    <li>Giảm giá 40% so với mua lẻ</li>
-                    <li>Hỗ trợ trọn đời</li>
-                    <li>Group VIP riêng</li>
-                    <li>Cập nhật miễn phí vĩnh viễn</li>
-                    <li>Ưu tiên hỗ trợ 1:1 trên Google Meet</li>
-                </ul>
-                <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="ĐĂNG KÝ NGAY">ĐĂNG KÝ NGAY</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Benefits -->
-    <section class="section">
-        <div class="section-header">
-            <h2>LỢI ÍCH KHI LÀM VIỆC VỚI CHÚNG TÔI</h2>
-            <p>Lý do hàng ngàn khách hàng đã tin tưởng và lựa chọn dịch vụ của chúng tôi</p>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-content">
-                    <h3>Tốc độ nhanh chóng</h3>
-                    <p>Xử lý yêu cầu 24/7, hoàn thành nhanh chóng chỉ từ 5-30 phút cho các dịch vụ cơ bản</p>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-content">
-                    <h3>Bảo mật tuyệt đối</h3>
-                    <p>Cam kết không lưu giữ thông tin khách hàng, bảo mật toàn diện mọi giao dịch</p>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-content">
-                    <h3>Hỗ trợ 24/7</h3>
-                    <p>Đội ngũ chuyên viên luôn sẵn sàng hỗ trợ mọi vấn đề khách hàng gặp phải</p>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-content">
-                    <h3>Giá cả cạnh tranh</h3>
-                    <p>Giá dịch vụ tốt nhất thị trường với chất lượng đảm bảo theo tiêu chuẩn cao</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About -->
-    <section class="section">
-        <div class="section-header">
-            <h2>VỀ CHÚNG TÔI</h2>
-            <p>Đội ngũ chuyên gia với hơn 5 năm kinh nghiệm trong lĩnh vực Digital Marketing và Mạng xã hội</p>
-        </div>
-        
-        <div class="feature-card" style="max-width: 900px; margin: 0 auto;">
-            <div class="feature-content">
-                <h3>Tại sao chọn Chiến Tricker?</h3>
-                <p style="margin-bottom: 1rem;">
-                    Chúng tôi không chỉ là nhà cung cấp dịch vụ, mà còn là đối tác chiến lược giúp bạn đạt được mục tiêu kinh doanh trên không gian số.
-                </p>
-                <p style="margin-bottom: 1rem;">
-                    Với đội ngũ chuyên gia giàu kinh nghiệm, chúng tôi tự hào mang đến các giải pháp toàn diện từ tư vấn, triển khai đến đo lường hiệu quả chiến dịch.
-                </p>
-                <p>
-                    Hơn 5,000 khách hàng đã tin tưởng sử dụng dịch vụ và hài lòng với kết quả đạt được. Chúng tôi cam kết mang lại giá trị thực sự cho mọi đồng vốn bạn đầu tư.
-                </p>
-            </div>
-        </div>
-        
-        <div class="stats-grid" style="margin-top: 3rem;">
-            <div class="stat-card">
-                <span class="stat-number">50K+</span>
-                <span class="stat-label">Người Dùng</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">99.9%</span>
-                <span class="stat-label">Uptime</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">Support</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">100+</span>
-                <span class="stat-label">Features</span>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Testimonials -->
-    <section class="section">
-        <div class="section-header">
-            <h2>MỌI NGƯỜI NÓI GÌ VỀ CHIẾN TRICKER</h2>
-            <p>Hãy lắng nghe những khách hàng hài lòng của chúng tôi chia sẻ về trải nghiệm của họ</p>
-        </div>
-        
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-author">
-                    <img src="http://static.photos/people/200x200/1" alt="Minh Trần" class="author-avatar">
-                    <div class="author-info">
-                        <h4>Minh Trần</h4>
-                        <p>CEO tại NovaMedia</p>
-                    </div>
-                </div>
-                <p class="testimonial-text">
-                    "Chúng tôi đã thử nhiều nền tảng nhưng chưa thấy dịch vụ nào mang lại hiệu quả lan toả thương hiệu tốt như thế này. Tương tác tăng rõ rệt, chi phí hợp lý, và hỗ trợ cực kỳ tận tâm."
-                </p>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-author">
-                    <img src="http://static.photos/people/200x200/2" alt="Nguyễn Hương Ly" class="author-avatar">
-                    <div class="author-info">
-                        <h4>Nguyễn Hương Ly</h4>
-                        <p>Marketer in TechNext</p>
-                    </div>
-                </div>
-                <p class="testimonial-text">
-                    "Dịch vụ giúp chúng tôi duy trì sự hiện diện ổn định trên mạng xã hội mà không cần tốn quá nhiều thời gian quản lý. Báo cáo rõ ràng, dễ theo dõi, đội ngũ chuyên nghiệp."
-                </p>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-author">
-                    <img src="http://static.photos/people/200x200/3" alt="Trung Đức" class="author-avatar">
-                    <div class="author-info">
-                        <h4>Trung Đức</h4>
-                        <p>CEO MyCloset</p>
-                    </div>
-                </div>
-                <p class="testimonial-text">
-                    "Fanpage được chăm chút từng ngày, bài viết sáng tạo, nhiều lượt chia sẻ hơn trước. Doanh số từ kênh mạng xã hội đã tăng 40% chỉ sau 2 tháng!"
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2>SẴN SÀNG THAY ĐỔI TRẢI NGHIỆM CỦA BẠN?</h2>
-            <p>Tham gia cùng hàng ngàn người dùng hài lòng và trải nghiệm tương lai của dịch vụ mạng xã hội ngay hôm nay.</p>
-            <a href="https://zalo.me/0345161185" class="btn btn-primary" data-text="BẮT ĐẦU NGAY">BẮT ĐẦU NGAY</a>
-        </div>
-    </section>
-</div>
+<!-- ══════════ FACEBOOK SERVICES ══════════ -->
+<section id="services">
+  <p class="section-label">Facebook & Tài Khoản</p>
+  <h2 class="section-title">DỊCH VỤ<br>FACEBOOK</h2>
+  <div class="grid-3">
 
-<!-- Footer -->
-<footer id="contact">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Chiến Tricker</h3>
-                <p>
-                    Khám phá các khóa học chuyên sâu giúp bạn có được nhiều kiến thức bổ ích về mạng xã hội, kiếm tiền online và tiếp thị số. 
-                    Từ các TUT Trick khai thác, bảo mật đến chiến lược quảng cáo bán hàng hiệu quả.
-                </p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Features</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="https://zalo.me/0345161185">Courses</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="https://zalo.me/0345161185">FAQ</a></li>
-                    <li><a href="https://zalo.me/0345161185">Help Center</a></li>
-                    <li><a href="https://zalo.me/0345161185">Community</a></li>
-                    <li><a href="https://zalo.me/0345161185">Contact Us</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Liên Hệ Với Chúng Tôi</h3>
-                <p>Email: hoangminhchientricker@gmail.com</p>
-                <p>Phone: 0345161185</p>
-                <p>Telegram: @hmctricker</p>
-                <p>Zalo: 0345161185</p>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>© 2019 HOANGMINHCHIEN.XYZ. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookies</a>
-            </div>
-        </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <div class="card-name">Tăng Tương Tác Ảo</div>
+      <div class="card-desc">Like, comment, share, follow tự động bằng bot. Tăng nhanh độ phủ sóng cho bài viết và fanpage.</div>
+      <span class="price-tag">Từ 20.000đ / gói</span>
     </div>
+
+    <div class="card">
+      <div class="card-icon">👥</div>
+      <div class="card-name">Tăng Tương Tác Người Thật</div>
+      <div class="card-desc">Tương tác từ tài khoản người thật, an toàn, bền vững. Phù hợp fanpage thương hiệu, shop online.</div>
+      <span class="price-tag">Từ 50.000đ / gói</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💣</div>
+      <div class="card-name">Dame Facebook, Bài Viết, Nhóm FB</div>
+      <div class="card-desc">Report, hạn chế hoặc hỗ trợ xử lý các tài khoản, bài viết và nhóm Facebook theo yêu cầu.</div>
+      <span class="price-tag red">Liên hệ báo giá</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔓</div>
+      <div class="card-name">Mở Khoá / Gỡ Hạn Chế Tài Khoản</div>
+      <div class="card-desc">Khôi phục tài khoản bị khoá, checkpoint, hạn chế đăng bài, hạn chế quảng cáo. Cam kết hoàn tiền nếu thất bại.</div>
+      <span class="price-tag">Từ 150.000đ</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <div class="card-name">Bảo Vệ Tài Khoản Facebook</div>
+      <div class="card-desc">Gia cố bảo mật 2FA, chống phishing, chống hack. Bảo vệ tài khoản kinh doanh và cá nhân quan trọng.</div>
+      <span class="price-tag">Từ 80.000đ</span>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════ GẠN THẺ CÀO ══════════ -->
+<section id="gachu">
+  <p class="section-label">Dịch Vụ Tài Chính</p>
+  <h2 class="section-title">GẠN THẺ CÀO<br>& TIỀN MẶT</h2>
+  <div class="grid-3">
+
+    <div class="card special">
+      <div class="card-icon">💳</div>
+      <div class="card-name">
+        Gạch Thẻ Cào – Chỉ Mất 5% Giá Trị
+        <span class="badge-hot">HOT</span>
+      </div>
+      <div class="card-desc">
+        Đổi thẻ cào sang tiền mặt hoặc ngược lại. Hỗ trợ đủ mệnh giá, đủ loại thẻ (Viettel, Mobifone, Vinaphone, Vietnamobile, Gmobile). Giao dịch nhanh, nhận tiền ngay. Phí chỉ 5% — thấp nhất thị trường.
+      </div>
+
+      <div class="gachu-grid">
+        <div class="gachu-item">
+          <span class="label">Thẻ 10.000đ</span>
+          <span class="original">→ Tiền mặt</span>
+          <span class="received">Nhận: 9.500đ</span>
+          <span class="fee">Phí: 500đ (5%)</span>
+        </div>
+        <div class="gachu-item">
+          <span class="label">Thẻ 20.000đ</span>
+          <span class="original">→ Tiền mặt</span>
+          <span class="received">Nhận: 19.000đ</span>
+          <span class="fee">Phí: 1.000đ (5%)</span>
+        </div>
+        <div class="gachu-item">
+          <span class="label">Thẻ 50.000đ</span>
+          <span class="original">→ Tiền mặt</span>
+          <span class="received">Nhận: 47.500đ</span>
+          <span class="fee">Phí: 2.500đ (5%)</span>
+        </div>
+        <div class="gachu-item">
+          <span class="label">Thẻ 100.000đ</span>
+          <span class="original">→ Tiền mặt</span>
+          <span class="received">Nhận: 95.000đ</span>
+          <span class="fee">Phí: 5.000đ (5%)</span>
+        </div>
+        <div class="gachu-item">
+          <span class="label">Thẻ 200.000đ</span>
+          <span class="original">→ Tiền mặt</span>
+          <span class="received">Nhận: 190.000đ</span>
+          <span class="fee">Phí: 10.000đ (5%)</span>
+        </div>
+        <div class="gachu-item">
+          <span class="label">Thẻ 500.000đ</span>
+          <span class="original">→ Tiền mặt</span>
+          <span class="received">Nhận: 475.000đ</span>
+          <span class="fee">Phí: 25.000đ (5%)</span>
+        </div>
+      </div>
+
+      <p style="margin-top:20px; color:var(--muted); font-size:.85rem;">
+        ✅ Đủ mạng — ✅ Đủ mệnh giá — ✅ Nhận tiền ngay — ✅ Hỗ trợ 24/7
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════ PREMIUM APPS ══════════ -->
+<section id="apps">
+  <p class="section-label">Ứng Dụng</p>
+  <h2 class="section-title">APP PREMIUM<br>GIÁ RẺ</h2>
+  <div class="grid-3">
+
+    <div class="card">
+      <div class="card-icon">🎵</div>
+      <div class="card-name">Spotify Premium</div>
+      <div class="card-desc">Nghe nhạc không quảng cáo, tải về offline, chất lượng cao.</div>
+      <span class="price-tag">Từ 25.000đ / tháng</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <div class="card-name">Netflix / YouTube Premium</div>
+      <div class="card-desc">Tài khoản chính chủ hoặc chia sẻ, xem 4K, không quảng cáo.</div>
+      <span class="price-tag">Từ 35.000đ / tháng</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <div class="card-name">ChatGPT Plus / Claude Pro</div>
+      <div class="card-desc">Truy cập GPT-4, Claude 3 Opus, không giới hạn tin nhắn.</div>
+      <span class="price-tag">Từ 150.000đ / tháng</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <div class="card-name">Canva Pro / Adobe CC</div>
+      <div class="card-desc">Đầy đủ tính năng thiết kế chuyên nghiệp, kho asset khổng lồ.</div>
+      <span class="price-tag">Từ 80.000đ / tháng</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <div class="card-name">Các App Khác</div>
+      <div class="card-desc">Microsoft 365, Duolingo, Grammarly, VPN, Notion... và nhiều app khác theo yêu cầu.</div>
+      <span class="price-tag red">Liên hệ báo giá</span>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════ COURSES ══════════ -->
+<section id="courses">
+  <p class="section-label">Khóa Học</p>
+  <h2 class="section-title">HỌC & KIẾM<br>TIỀN ONLINE</h2>
+  <div style="display:flex; flex-direction:column; gap:14px;">
+
+    <div class="course-card">
+      <div class="course-num">01</div>
+      <div class="course-info">
+        <div class="course-name">Khóa Học Dịch Vụ Facebook</div>
+        <div class="course-desc">Toàn bộ nghề dịch vụ Facebook từ A–Z: tăng tương tác, dame, bảo vệ, mở khoá. Học xong tự làm được ngay.</div>
+        <span class="price-tag">599.000đ</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-num">02</div>
+      <div class="course-info">
+        <div class="course-name">Khóa Học AI Kiếm Tiền</div>
+        <div class="course-desc">Sử dụng ChatGPT, Midjourney, Claude, Gemini... để tạo nội dung, freelance và xây dựng thu nhập thụ động.</div>
+        <span class="price-tag">799.000đ</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-num">03</div>
+      <div class="course-info">
+        <div class="course-name">Khóa Học Lập Trình Đa Ngôn Ngữ</div>
+        <div class="course-desc">Python, JavaScript, PHP, C++... từ cơ bản đến ứng dụng thực tế. Có mentor hỗ trợ 1-1.</div>
+        <span class="price-tag">999.000đ</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-num">04</div>
+      <div class="course-info">
+        <div class="course-name">Khóa Học Trading ONUS Pro</div>
+        <div class="course-desc">Phân tích kỹ thuật, quản lý vốn, chiến lược giao dịch crypto trên sàn ONUS. Từ newbie đến trader chuyên nghiệp.</div>
+        <span class="price-tag">1.299.000đ</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════ CUSTOM WORK ══════════ -->
+<section id="custom">
+  <p class="section-label">Làm Theo Yêu Cầu</p>
+  <h2 class="section-title">TOOL – BOT – WEB<br>& THƯƠNG HIỆU</h2>
+  <div class="grid-3">
+
+    <div class="card">
+      <div class="card-icon">⚙️</div>
+      <div class="card-name">Làm Tool – Bot – Web Theo Yêu Cầu</div>
+      <div class="card-desc">Automation bot, tool Facebook, web bán hàng, landing page, hệ thống quản lý... Làm theo spec, bàn giao source code.</div>
+      <span class="price-tag red">Báo giá theo dự án</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📰</div>
+      <div class="card-name">Viết Báo Online – Xây Dựng Tên Tuổi</div>
+      <div class="card-desc">Đăng bài PR thương hiệu, cá nhân trên các báo lớn. Tăng uy tín, xây dựng hình ảnh chuyên gia.</div>
+      <span class="price-tag">Từ 500.000đ / bài</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <div class="card-name">Thiết Kế Logo & Thương Hiệu Cá Nhân</div>
+      <div class="card-desc">Logo độc quyền, bộ nhận diện thương hiệu, avatar, banner, name card. Cung cấp file vector full.</div>
+      <span class="price-tag">Từ 200.000đ</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ CONTACT CTA ══════════ -->
+<section id="contact" style="padding-bottom: 40px;">
+  <div class="custom-box">
+    <div>
+      <h3>LIÊN HỆ NGAY 🚀</h3>
+      <p>Tất cả dịch vụ đều hỗ trợ 24/7. Nhắn tin để được báo giá chi tiết và tư vấn miễn phí.</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:12px;">
+      <a class="btn-gold" href="https://m.me/HoangMinhChienTricker" target="_blank">💬 Nhắn Tin Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="brand">HOÀNG MINH CHIẾN TRICKER</div>
+  <div class="tagline">Hoàng Đế trong giới Tricker – Hacker · Dịch vụ Digital uy tín &amp; chuyên nghiệp</div>
+  <p style="color:var(--muted); font-size:.75rem; margin-top:20px;">© 2025 Hoàng Minh Chiến Tricker. All rights reserved.</p>
 </footer>
-
-<script>
-    // Matrix Rain Effect
-    const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-    
-    for (let x = 0; x < columns; x++) {
-        drops[x] = Math.random() * canvas.height;
-    }
-    
-    function drawMatrix() {
-        ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#00FF41';
-        ctx.font = fontSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = matrix.charAt(Math.floor(Math.random() * matrix.length));
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            
-            drops[i]++;
-        }
-    }
-    
-    setInterval(drawMatrix, 35);
-    
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-    
-    // Live Data Feed
-    const feedMessages = [
-        "User authentication successful - ID: USR_2847",
-        "Transaction completed - Amount: 500.000đ",
-        "New service request - Type: DAME_FACEBOOK",
-        "System backup initiated - Progress: 87%",
-        "SSL Certificate renewed - Domain: hoangminhchien.xyz",
-        "API response time: 45ms - Status: OK",
-        "Database optimization completed",
-        "New user registered - Total: 50,127",
-        "Payment gateway connected - Status: ACTIVE",
-        "Security scan completed - Threats: 0",
-        "Cache cleared - Performance improved by 23%",
-        "CDN synchronized - Latency reduced",
-        "Firewall updated - New rules applied",
-        "Service delivery completed - Client satisfaction: 5/5",
-        "Monitoring system active - All services operational"
-    ];
-    
-    function addFeedItem() {
-        const feed = document.getElementById('live-feed');
-        const message = feedMessages[Math.floor(Math.random() * feedMessages.length)];
-        const now = new Date();
-        const time = now.toLocaleTimeString('vi-VN');
-        
-        const item = document.createElement('div');
-        item.className = 'feed-item';
-        item.innerHTML = `
-            <div class="feed-time">[${time}]</div>
-            <div class="feed-message">> ${message}</div>
-        `;
-        
-        feed.insertBefore(item, feed.firstChild);
-        
-        // Keep only last 10 items
-        while (feed.children.length > 10) {
-            feed.removeChild(feed.lastChild);
-        }
-    }
-    
-    // Add initial feed items
-    for (let i = 0; i < 5; i++) {
-        setTimeout(() => addFeedItem(), i * 500);
-    }
-    
-    // Add new items periodically
-    setInterval(addFeedItem, 4000);
-    
-    // Update System Status - SIÊU NHANH
-    function updateSystemStatus() {
-        // USERS: Random từ 5.0K đến 30.0K+
-        const users = 5000 + Math.floor(Math.random() * 25000);
-        document.getElementById('user-count').textContent = (users / 1000).toFixed(1) + 'K+';
-        
-        // LATENCY: Random từ 3ms đến 25ms
-        const latency = Math.floor(Math.random() * 23) + 3;
-        document.getElementById('latency').textContent = latency + 'ms';
-    }
-    
-    // Cập nhật ngay khi load
-    updateSystemStatus();
-    
-    // Cập nhật mỗi 500ms (SIÊU NHANH)
-    setInterval(updateSystemStatus, 500);
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const target = document.getElementById(targetId);
-            
-            if (target) {
-                const headerHeight = 80;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
-    // Add glitch effect on button hover
-    document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            this.style.animation = 'glitch 0.3s infinite';
-        });
-        
-        btn.addEventListener('mouseleave', function() {
-            this.style.animation = '';
-        });
-    });
-</script>
-```
 
 </body>
 </html>
